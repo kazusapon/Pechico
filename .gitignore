@@ -40,3 +40,6 @@ yarn-debug.log*
 /config/database.yml
 
 /.vs
+
+Gemfile.lock
+yarn.lock
