@@ -38,3 +38,5 @@ yarn-debug.log*
 /vendor/bundle
 
 /config/database.yml
+
+.vs
