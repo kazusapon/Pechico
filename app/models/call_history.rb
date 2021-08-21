@@ -1,0 +1,2 @@
+class CallHistroy < ApplicationRecord
+end

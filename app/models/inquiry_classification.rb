@@ -1,0 +1,2 @@
+class InquiryClassification < ApplicationRecord
+end
