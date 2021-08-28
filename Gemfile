@@ -53,10 +53,10 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # front-end
-gem 'bootstrap-sass', '~> 3.4.1'
-gem 'sassc-rails', '>= 2.1.0'
-gem 'jquery-rails'
-gem 'font-awesome-rails'
+# gem 'bootstrap-sass', '~> 3.4.1'
+# gem 'sass-rails', '>= 6'
+# gem 'jquery-rails'
+#gem 'font-awesome-rails'
 
 # 論理削除
 gem 'paranoia', '~>2.4.3'
@@ -65,7 +65,7 @@ gem 'paranoia', '~>2.4.3'
 # gem 'websocket-rails', '~>0.7.0'
 
 # 国際化
-gem 'i18n'
+gem 'rails-i18n'
 
 # 検索
 gem 'ransack'

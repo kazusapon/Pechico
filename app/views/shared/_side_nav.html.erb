@@ -1,0 +1,53 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <%= link_to root_path, class: 'brand-link' do %>
+      <span class="brand-text font-weight-light">Pechico</span>
+    <% end %>
+
+    <div class="sidebar">
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <%= link_to root_path, class: 'nav-link' do %>
+              <i class="nav-icon far fa-chart-bar fa-lg"></i> ダッシュボード
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to root_path, class: 'nav-link' do %>
+            <i class="nav-icon fas fa-bell fa-lg"></i> 新着情報
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to root_path, class: 'nav-link' do %>
+              <i class="nav-icon fas fa-list fa-lg"></i> 問合せ一覧
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to root_path, class: 'nav-link' do %>
+              <i class="nav-icon fas fa-user-edit fa-lg"></i> ユーザ管理
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to root_path, class: 'nav-link' do %>
+              <i class="nav-icon far fa-circle fa-lg"></i> アプリケーション管理
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to root_path, class: 'nav-link' do %>
+              <i class="nav-icon far fa-circle fa-lg"></i>問合せの分類管理
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to root_path, class: 'nav-link' do %>
+              <i class="nav-icon far fa-circle fa-lg"></i> 問合せ者の分類管理
+            <% end %>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </aside>
