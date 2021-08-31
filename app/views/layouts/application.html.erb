@@ -10,13 +10,15 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="hold-transition sidebar-mini">
+  <body>
     <div class="wrapper">
-      <%= render partial: 'shared/top_nav' %>
-      <%= render partial: 'shared/side_nav' %>
+      <% unless log_in_page? %>
+        <%= render partial: 'shared/top_nav' %>
+        <%= render partial: 'shared/side_nav' %>
+      <% end %>
 
       <%= yield %>
-      
+
     </div>
   </body>
 </html>

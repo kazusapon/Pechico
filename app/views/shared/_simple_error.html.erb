@@ -1,0 +1,9 @@
+<!-- flashメッセージを表示させる簡易的なエラー表示  -->
+<% if flash.present? %>
+  <div class="alert alert-danger alert-dismissible">
+    <i class="fas fa-exclamation-triangle"></i>&nbsp;
+    <% flash.each do |type, message| %>
+      <%= message %>
+    <% end %>
+  </div>
+<% end %>
