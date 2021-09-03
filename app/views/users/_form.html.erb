@@ -1,4 +1,4 @@
-<div id="user_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" area-modal="true" backdrop="false" keyboard="false">
+<div id="user_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" area-modal="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -7,7 +7,7 @@
         </h4>
       </div>
 
-      <%= form_with model: @user, url: users_path, local: false do |f| %>
+      <%= form_with model: @user, local: false do |f| %>
         <div id="errors"></div>
         <div class="modal-body">
           <div class="form-group">
