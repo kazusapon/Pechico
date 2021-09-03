@@ -11,14 +11,14 @@
       <div class="card">
         <div class="card-header">
           <div class="text-right">
-            <%= link_to 'ユーザ追加', root_path, class: 'btn btn-primary' %>
+            <%= link_to 'ユーザ追加', new_user_path, method: :get, remote: true, class: 'btn btn-primary' %>
           </div>
         </div>
 
         <div class="card-body p-0">
           <table class="table table-striped">
             <thead>
-              <th>#</th>
+              <th>No</th>
               <th>ユーザ名</th>
               <th>削除日</th>
               <th></th>
@@ -40,7 +40,9 @@
           </table>
         </div>
       </div>
-
     </div>
   </section>
+</div>
+
+<div id="modal_area">
 </div>

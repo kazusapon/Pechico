@@ -1,0 +1,10 @@
+<% if model.errors.any? %>
+  <div class="alert alert-danger">
+    <i class="fas fa-exclamation-triangle"></i>&nbsp;エラーがあります
+    <ul>
+      <% model.errors.full_messages.each  do |error_message| %>
+          <li><%= error_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

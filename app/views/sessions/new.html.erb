@@ -6,7 +6,7 @@
       <div class="card-header">
         <h3 class="card-title">Wellcome</h3>
       </div>
-      <%= form_with model: @user, url: sessions_path do |f| %>
+      <%= form_with model: @user, url: sessions_path, method: :post  do |f| %>
         <div class="card-body">
           <div class="form-group">
             <%= f.label :login_id, 'ログインID' %>
