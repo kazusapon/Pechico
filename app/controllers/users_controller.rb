@@ -11,12 +11,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     respond_to do |format|
-      if @user.save
+      if @user.save!
         format.html { redirect_to users_path }
-        format.js { render js: "window.location = '#{users_path}'" }
-        return
+        format.js { render js: "window.location.href = '#{users_path}'" }
       end
-
+    end
+  rescue ActiveRecord::RecordInvalid => e
+    respond_to do |format|
       format.html { render partial: 'users/errorjs.erb' }
       format.js { render partial: 'users/error.js.erb' }
     end
@@ -30,6 +31,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    user = User.find_by(id: params[:id])
+    user.destroy if user
+    redirect_to users_path
   end
 
   private
