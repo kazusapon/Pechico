@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    flash[:modal_title] = 'ユーザ登録'
+    @modal_title = 'ユーザ登録'
     @user = User.new
 
     render 'save_modal'
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    flash[:modal_title] = 'ユーザ更新'
+    @modal_title = 'ユーザ更新'
     @user = User.find(params[:id])
     
     render 'save_modal'
