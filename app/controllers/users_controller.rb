@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
+  PER = 10
+
   def index
-    @users = User.with_deleted
+    @users = User.page(params[:page]).per(PER)
   end
 
   def new
@@ -47,7 +49,7 @@ class UsersController < ApplicationController
 
   def destroy
     user = User.find_by(id: params[:id])
-    user.destroy if user
+    user.logical_delete if user
 
     redirect_to users_path
   end
