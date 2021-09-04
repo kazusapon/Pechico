@@ -58,9 +58,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # gem 'jquery-rails'
 #gem 'font-awesome-rails'
 
-# 論理削除
-gem 'paranoia', '~>2.4.3'
-
 # WebSocket
 # gem 'websocket-rails', '~>0.7.0'
 
@@ -71,4 +68,4 @@ gem 'rails-i18n'
 gem 'ransack'
 
 # ページネーション
-gem 'kaminari'
+gem 'kaminari', :git => 'https://github.com/kaminari/kaminari'
