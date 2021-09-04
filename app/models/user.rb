@@ -11,7 +11,7 @@ class User < ApplicationRecord
     self.save!
   end
 
-  def reborn
+  def resurrect
     self.deleted_at = nil
     self.save!
   end

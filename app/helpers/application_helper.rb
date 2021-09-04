@@ -16,7 +16,7 @@ module ApplicationHelper
   end
 
   # 削除取消（復活）ボタン
-  def reborn_button(url)
+  def resurrect_button(url)
     btn = ''
     btn += link_to('削除取消', url, method: :get, class: 'btn btn-success mr-2')
     

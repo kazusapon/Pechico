@@ -4,7 +4,7 @@ module UsersHelper
   def user_operate_button(user)
     str = ''
     if user.deleted?
-      str += reborn_button(root_path)
+      str += resurrect_button(resurrect_users_path(id: user.id))
       return str.html_safe
     end
 

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   PER = 10
 
   def index
-    @users = User.page(params[:page]).per(PER)
+    @users = User.order(id: :asc).page(params[:page]).per(PER)
   end
 
   def new
@@ -48,8 +48,15 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user = User.find_by(id: params[:id])
-    user.logical_delete if user
+    user = User.find(params[:id])
+    user.logical_delete
+
+    redirect_to users_path
+  end
+
+  def resurrect
+    user = User.find(params[:id])
+    user.resurrect
 
     redirect_to users_path
   end
