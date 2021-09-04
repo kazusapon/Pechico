@@ -18,8 +18,8 @@ module SessionsHelper
     user == current_user
   end
 
-  def log_in?
-    current_user.present?
+  def log_in?(user)
+    current_user == user
   end
 
   def log_out
