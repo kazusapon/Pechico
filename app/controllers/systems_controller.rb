@@ -6,7 +6,7 @@ class SystemsController < ApplicationController
   end
 
   def new
-    @modal_title = "アプリケーション登録"
+    @modal_title = "システム登録"
     @system = System.new
 
     render 'save_modal'
@@ -27,7 +27,7 @@ class SystemsController < ApplicationController
   end
 
   def edit
-    @modal_title = "アプリケーション編集"
+    @modal_title = "システム編集"
   end
 
   def update
