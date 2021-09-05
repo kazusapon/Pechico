@@ -12,4 +12,10 @@ Rails.application.routes.draw do
       get 'resurrect'
     end
   end
+
+  resource :systems do
+    member do
+      get 'resurrect'
+    end
+  end
 end

@@ -32,9 +32,9 @@
                   <td><%= sys.name %></td>
                   <td><%= sys.short_name %></td>
                   <td><%= sys.deleted_at.try!(:strftime, '%Y-%m-%d %H:%M:%S') %></td>
-                  <td></td>
+                  <td><%= system_operate_button(sys) %></td>
                 </tr>
-              <% end %> 
+              <% end %>
             </tbody>
           </table>
           <%= paginate @systems %>

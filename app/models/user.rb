@@ -19,6 +19,6 @@ class User < ApplicationRecord
   end
 
   def deleted?
-    return self.deleted_at.present?
+    self.deleted_at.present?
   end
 end
