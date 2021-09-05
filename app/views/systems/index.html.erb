@@ -1,0 +1,48 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <div class="container-fluid">
+      <h4 class="m-0 text-dark">システム一覧</h4>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      
+      <div class="card">
+        <div class="card-header">
+          <div class="text-right">
+            <%= link_to '新規追加', new_system_path, method: :get, remote: true, class: 'btn btn-primary' %>
+          </div>
+        </div>
+
+        <div class="card-body p-0">
+          <table class="table table-striped">
+            <thead>
+              <th>No</th>
+              <th>アプリケーション名</th>
+              <th>アプリケーション名（略称）</th>
+              <th>削除日時</th>
+              <th></th>
+            </thead>
+
+            <tbody>
+              <% @systems.each_with_index do |sys, i| %>
+                <tr>
+                  <td><%= i + 1 %></td>
+                  <td><%= sys.name %></td>
+                  <td><%= sys.short_name %></td>
+                  <td><%= sys.deleted_at.try!(:strftime, '%Y-%m-%d %H:%M:%S') %></td>
+                  <td></td>
+                </tr>
+              <% end %> 
+            </tbody>
+          </table>
+          <%= paginate @systems %>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="modal_area">
+</div>

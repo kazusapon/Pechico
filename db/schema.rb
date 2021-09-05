@@ -15,14 +15,6 @@ ActiveRecord::Schema.define(version: 2021_09_03_163741) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "applications", force: :cascade do |t|
-    t.string "name"
-    t.string "short_name"
-    t.datetime "daleted_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "call_histroys", force: :cascade do |t|
     t.integer "user_id"
     t.string "company_name"
@@ -73,6 +65,14 @@ ActiveRecord::Schema.define(version: 2021_09_03_163741) do
 
   create_table "inquiry_relations", force: :cascade do |t|
     t.integer "inquiry_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "systems", force: :cascade do |t|
+    t.string "name"
+    t.string "short_name"
+    t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :dashboard, only: [:index]
   resources :users, except: :show
+  resources :systems, except: :show
 
   resource :users do
     member do
