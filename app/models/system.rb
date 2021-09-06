@@ -1,4 +1,6 @@
 class System < ApplicationRecord
+  has_many :inquiries, foreign_key: 'system_id'
+  
   validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
   validates :short_name, presence: true, uniqueness: true, length: { maximum: 10 }
 
