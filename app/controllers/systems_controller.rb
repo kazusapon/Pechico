@@ -6,9 +6,7 @@ class SystemsController < ApplicationController
   end
 
   def new
-    @modal_title = "システム登録"
     @system = System.new
-
     render 'save_modal'
   end
 
@@ -26,9 +24,7 @@ class SystemsController < ApplicationController
   end
 
   def edit
-    @modal_title = "システム編集"
     @system = System.find(params[:id])
-
     render 'save_modal'
   end
 

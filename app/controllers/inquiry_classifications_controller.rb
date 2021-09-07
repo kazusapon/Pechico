@@ -6,9 +6,7 @@ class InquiryClassificationsController < ApplicationController
   end
 
   def new
-    @modal_title = '問合せ分類登録'
     @inquiry_classification = InquiryClassification.new
-
     render 'save_modal'
   end
 
@@ -26,9 +24,7 @@ class InquiryClassificationsController < ApplicationController
   end
 
   def edit
-    @modal_title = '問合せ分類編集'
     @inquiry_classification = InquiryClassification.find(params[:id])
-
     render 'save_modal'
   end
 

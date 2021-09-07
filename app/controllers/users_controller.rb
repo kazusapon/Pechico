@@ -6,9 +6,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @modal_title = 'ユーザ登録'
     @user = User.new
-
     render 'save_modal'
   end
 
@@ -27,9 +25,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @modal_title = 'ユーザ更新'
     @user = User.find(params[:id])
-    
     render 'save_modal'
   end
 
