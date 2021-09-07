@@ -8,10 +8,7 @@ module InquiryClassificationsHelper
       return str.html_safe
     end
     str += edit_button(edit_inquiry_classification_path(classification.id), 'get', true)
-    
-    if classification.inquiries.empty?
-      str += delete_button(inquiry_classification_path(classification.id))
-    end
+    str += delete_button(inquiry_classification_path(classification.id))
     
     return str.html_safe
   end

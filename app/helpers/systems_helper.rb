@@ -8,10 +8,7 @@ module SystemsHelper
       return str.html_safe
     end
     str += edit_button(edit_system_path(id: sys.id), 'get', true)
-    
-    if sys.inquiries.empty?
-      str += delete_button(system_path(id: sys.id))
-    end
+    str += delete_button(system_path(id: sys.id))
 
     return str.html_safe
   end
