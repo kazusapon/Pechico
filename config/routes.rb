@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users, except: :show
   resources :systems, except: :show
   resources :inquiry_classifications, except: :show
+  resources :inquirier_kinds, except: :show
 
   resource :users do
     member do
@@ -21,6 +22,12 @@ Rails.application.routes.draw do
   end
 
   resource :inquiry_classifications do
+    member do
+      get 'resurrect'
+    end
+  end
+
+  resource :inquirier_kinds do
     member do
       get 'resurrect'
     end

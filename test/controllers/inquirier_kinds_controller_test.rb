@@ -1,6 +1,6 @@
 require "test_helper"
 
-class InquirierKindTest < ActiveSupport::TestCase
+class InquirierKindsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

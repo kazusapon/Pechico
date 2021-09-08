@@ -1,0 +1,46 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <div class="container-fluid">
+      <h4 class="m-0 text-dark">問合せ者分類一覧</h4>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      
+      <div class="card">
+        <div class="card-header">
+          <div class="text-right">
+            <%= link_to '新規追加', new_inquirier_kinds_path, method: :get, remote: true, class: 'btn btn-primary' %>
+          </div>
+        </div>
+
+        <div class="card-body p-0">
+          <table class="table table-striped">
+            <thead>
+              <th>No</th>
+              <th>分類名</th>
+              <th>削除日時</th>
+              <th></th>
+            </thead>
+
+            <tbody>
+              <% @inquirier_kinds.each_with_index do |kind, i| %>
+                <tr>
+                  <td><%= i + 1 %></td>
+                  <td><%= kind.name %></td>
+                  <td><%= kind.deleted_at.try!(:strftime, '%Y-%m-%d %H:%M:%S') %></td>
+                  <td><%= inquirier_kind_operate_button(kind) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%= paginate @inquirier_kinds %>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="modal_area">
+</div>

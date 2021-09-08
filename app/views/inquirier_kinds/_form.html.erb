@@ -1,0 +1,31 @@
+<div id="inquirier_kinds_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" area-modal="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">問合せ者分類の保存</h4>
+      </div>
+
+      <%= form_with model: @inquirier_kind, local: false do |f| %>
+        <div id="errors"></div>
+        <div class="modal-body">
+          <div class="form-group">
+            <%= f.label :name, '分類名' %>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= button_tag '閉じる', type: 'button', class: 'btn btn-default', id: 'modal_close' %>
+          <%= f.submit '保存', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  $('#modal_close').on('click', () => {
+    $('#inquirier_kinds_modal').modal('hide');
+  });
+
+</script>
