@@ -1,0 +1,89 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <div class="container-fluid">
+      <h4 class="m-0 text-dark">問合せ一覧</h4>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header">
+          <%= search_form_for @q, class: 'form-horizontal' do |f| %>
+            <div class="row">
+              <div class='form-group col col-sm-2'>
+                <%= f.label :inquiry_date_gteq, '着信日' %>
+                <%= f.search_field :inquiry_date_gteq, class: 'form-control', placeholder: '開始日' %>
+              </div>
+              <div class='form-group col col-sm-2'>
+                <%= label_tag 'q[inquiry_date_lteq]', '　' %>
+                <%= f.search_field :inquiry_date_lteq, class: 'form-control', placeholder: '終了日' %>
+              </div>
+              <div class='form-group col col-sm-2'>
+                <%= f.label :system_id_eq, 'システム' %>
+                <%= f.select :system_id_eq, @systems, { include_blank: 'すべて' }, { class: 'form-control' } %>
+              </div>
+              <div class='form-group col col-sm-2'>
+                <%= f.label :user_id_eq, '回答者（ユーザ）' %>
+                <%= f.select :user_id_eq, @users, { include_blank: 'すべて' }, { class: 'form-control' } %>
+              </div>
+              <div class='form-group col col-sm-2'>
+                <%= f.label :inq_id_eq, '問合せ種類' %>
+                <%= f.select :inquiry_classification_id_eq, @inquiry_classifications, { include_blank: 'すべて' }, { class: 'form-control' } %>
+              </div>
+              <div class='form-group col col-sm-2'>
+                <%= f.label :inquirier_kind_id_eq, '問合せ元分類' %>
+                <%= f.select :inquirier_kind_id_eq, @inquirier_kinds, { include_blank: 'すべて' }, { class: 'form-control' } %>
+              </div>
+            </div>
+            <div class="row">
+              <div class='form-group col col-sm-2'>
+                <%= f.label :company_name_eq, '問合せ元' %>
+                <%= f.search_field :company_name_eq, class: 'form-control' %>
+              </div>
+              <div class='form-group col col-sm-2'>
+                <%= f.label :telephone_number_or_sub_telephone_number_cont, '電話番号（予備含む）' %>
+                <%= f.search_field :telephone_number_or_sub_telephone_number_cont, class: 'form-control' %>
+              </div>
+              <div class='form-group col col-sm-6'>
+                <%= f.label :question_or_answer_cont, 'お問合せ／回答内容' %>
+                <%= f.search_field :question_or_answer_cont, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="row">              
+              <div class="text-right">
+                <%= f.submit '検索', class: 'btn btn-success col col-sm-1 mr-2' %>
+                <%= button_tag 'CSV出力', type: 'button', class: 'btn btn-info col col-sm-1 mr-2' %>
+                <%= button_tag 'Excel出力', type: 'button', class: 'btn btn-info col col-sm-1 mr-2' %>
+                <%= button_tag '新規登録', type: 'button', class: 'btn btn-primary col col-sm-1 mr-2' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="card-body p-0">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>着信日時</th>
+                <th>システム</th>
+                <th>問合せ元</th>
+                <th>担当者名</th>
+                <th>電話番号</th>
+                <th>お問合せ内容</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<div id="modal_area">
+</div>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :create]
   resources :dashboard, only: [:index]
+  resources :inquiries
   resources :users, except: :show
   resources :systems, except: :show
   resources :inquiry_classifications, except: :show

@@ -18,6 +18,10 @@ module SessionsHelper
     user == current_user
   end
 
+  def access_reject
+    redirect_to root_path unless log_in?
+  end
+
   def log_in?
     !current_user.nil?
   end
