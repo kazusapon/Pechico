@@ -76,8 +76,11 @@
               </tr>
             </thead>
             <tbody>
+              <% @inquiries.each_with_index do |inquiry, i| %>
+              <% end %>
             </tbody>
           </table>
+          <%= paginate @inquiries %>
         </div>
       </div>
     </div>

@@ -1,7 +1,10 @@
 class InquiriesController < ApplicationController
+  PER = 10
+
   def index
     set_search_items
     @q = Inquiry.ransack(params[:q])
+    @inquiries = @q.result.page(params[:page]).per(PER)
   end
 
   def show
