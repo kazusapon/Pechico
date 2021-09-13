@@ -11,6 +11,8 @@ class InquiriesController < ApplicationController
   end
 
   def new
+    set_search_items
+    @inquiry = Inquiry.new
   end
 
   def create
