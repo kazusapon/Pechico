@@ -9,15 +9,15 @@
         <div class="row">
           <div class="form-group col col-sm-2">
             <%= f.label :inquiry_date, '着信日' %>
-            <%= f.text_field :inquiry_date, class: 'form-control' %>
+            <%= f.text_field :inquiry_date, class: 'form-control datepickr' %>
           </div>
           <div class="form-group col col-sm-2">
             <%= f.label :start_time, '着信時間（開始）' %>
-            <%= f.text_field :start_time, class: 'form-control' %>
+            <%= f.text_field :start_time, class: 'form-control timepickr' %>
           </div>
           <div class="form-group col col-sm-2">
             <%= f.label :end_time, '着信時間（終了）' %>
-            <%= f.text_field :end_time, class: 'form-control' %>
+            <%= f.text_field :end_time, class: 'form-control timepickr' %>
           </div>
         </div>
 
