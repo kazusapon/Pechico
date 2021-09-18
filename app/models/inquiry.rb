@@ -12,6 +12,8 @@ class Inquiry < ApplicationRecord
   enum is_completeds: { incomplete: false, complete: true }
   enum inquiry_method_ids: { telephone: 1, mail: 2, direct: 3, other: 4 }
 
+  scope :without_deleted, -> { where(deleted_at: nil) }
+
   def self.complete_options
     return { '未完了' => is_completeds[:incomplete], '完了' => is_completeds[:complete], }
   end
@@ -23,5 +25,17 @@ class Inquiry < ApplicationRecord
       '直接' => inquiry_method_ids[:direct],
       'その他' => inquiry_method_ids[:other],
     }
+  end
+
+  def self.search_related_inquiries(tel_no, sub_tel_no)
+    inquiries = without_deleted
+                  .where(telephone_number: tel_no)
+                  .or(
+                    where(sub_telephone_number: sub_tel_no)
+                  )
+                  .order(inquiry_date: :desc)
+                  .order(start_time: :desc)
+
+    return inquiries
   end
 end

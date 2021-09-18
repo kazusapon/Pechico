@@ -17,10 +17,12 @@ class InquiriesController < ApplicationController
 
   def create
     @inquiry = Inquiry.create!(inquiries_params)
+
     redirect_to action: :index
   rescue ActiveRecord::RecordInvalid => e
     @inquiry ||= Inquiry.new
     set_select_box_items
+    
     render :new
   end
 
@@ -28,6 +30,10 @@ class InquiriesController < ApplicationController
   end
 
   def destroy
+  end
+
+  def related_inquiries
+    @inquiries = Inquiry.search_related_inquiries(params[:telephone_number], params[:sub_telephone_number])
   end
 
   private
