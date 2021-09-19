@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html]
   root to: 'sessions#new'
 
+  resource :inquiries do
+    collection do
+      get 'related_inquiries', to: 'inquiries#related_inquiries'
+    end
+  end
+
   resources :sessions, only: [:new, :create]
   resources :dashboard, only: [:index]
   resources :inquiries

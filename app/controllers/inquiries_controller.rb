@@ -20,8 +20,8 @@ class InquiriesController < ApplicationController
 
     redirect_to action: :index
   rescue ActiveRecord::RecordInvalid => e
-    @inquiry ||= Inquiry.new
     set_select_box_items
+    @inquiry ||= Inquiry.new
     
     render :new
   end
@@ -34,6 +34,7 @@ class InquiriesController < ApplicationController
 
   def related_inquiries
     @inquiries = Inquiry.search_related_inquiries(params[:telephone_number], params[:sub_telephone_number])
+    render 'related_inquiries'
   end
 
   private

@@ -1,0 +1,43 @@
+<div id="related_inquiries_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" area-modal="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">関連する問合せ</h4>
+      </div>
+
+      <div class="modal-body p-0">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>着信日時</th>
+              <th>会社名</th>
+              <th>担当者</th>
+              <th>システム名</th>
+              <th>問合せ内容</th>
+              <th>回答内容</th>
+              <th>回答者</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @inquiries.each do |inquiry| %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="modal-footer">
+        <%= button_tag '閉じる', type: 'button', class: 'btn btn-default', id: 'modal_close' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  $('#modal_close').on('click', () => {
+    $('#related_inquiries_modal').modal('hide');
+  });
+
+</script>
