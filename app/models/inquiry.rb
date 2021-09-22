@@ -53,7 +53,7 @@ class Inquiry < ApplicationRecord
     inquiries = without_deleted
                   .where(telephone_number: tel_no)
                   .or(
-                    where(sub_telephone_number: sub_tel_no)
+                    where(telephone_number: sub_tel_no)
                   )
                   .order(inquiry_date: :desc)
                   .order(start_time: :desc)

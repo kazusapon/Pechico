@@ -13,6 +13,9 @@ class InquiriesController < ApplicationController
   def new
     set_select_box_items
     @inquiry = Inquiry.new
+    @inquiry.inquiry_date = Date.today
+    @inquiry.start_time = Time.now
+    @inquiry.end_time = Time.now
   end
 
   def create

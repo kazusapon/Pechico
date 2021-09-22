@@ -32,8 +32,8 @@
                 <td><%= inquiry.user_name %></td>
                 <td>
                   <%= button_tag '選択', type: 'button', class: 'btn btn-info', onclick: 'javascript: selectedRelatedInquiry(event);' %>
-                  <%= hidden_filed_tag :inquiry_id, value: inquiry.id %>
-                  <%= hidden_filed_tag :inquiry_related_text, value: build_inquiry_related_text(inquiry) %>
+                  <%= hidden_field_tag :inquiry_id, inquiry.id %>
+                  <%= hidden_field_tag :inquiry_related_text, build_inquiry_related_text(inquiry) %>
                 </td>
             <% end %>
           </tbody>
