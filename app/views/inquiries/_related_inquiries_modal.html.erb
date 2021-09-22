@@ -1,5 +1,5 @@
 <div id="related_inquiries_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" area-modal="true">
-  <div class="modal-dialog modal-xl" role="document">
+  <div class="modal-dialog xlarge_modal" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">関連する問合せ</h4>
@@ -22,6 +22,19 @@
 
           <tbody>
             <% @inquiries.each do |inquiry| %>
+              <tr>
+                <td><%= inquiry.inquiry_datetime_text %></td>
+                <td><%= inquiry.company_name %></td>
+                <td><%= inquiry.inquirier_name %></td>
+                <td><%= inquiry.system_name %></td>
+                <td><%= inquiry.question %></td>
+                <td><%= inquiry.answer %></td>
+                <td><%= inquiry.user_name %></td>
+                <td>
+                  <%= button_tag '選択', type: 'button', class: 'btn btn-info', onclick: 'javascript: selectedRelatedInquiry(event);' %>
+                  <%= hidden_filed_tag :inquiry_id, value: inquiry.id %>
+                  <%= hidden_filed_tag :inquiry_related_text, value: build_inquiry_related_text(inquiry) %>
+                </td>
             <% end %>
           </tbody>
         </table>
@@ -39,5 +52,16 @@
   $('#modal_close').on('click', () => {
     $('#related_inquiries_modal').modal('hide');
   });
+
+  function selectedRelatedInquiry(event) {
+    const selectBtn = event.currentTarget;
+    const inquiryId = $(selectBtn).next().val();
+    const inquiryRelatedText = $(selectBtn).next().next().val();
+
+    $('#inquiry_inquiry_relation_id').val(inquiryId);
+    $('#relation_text').val(inquiryRelatedText);
+
+    $('#related_inquiries_modal').modal('hide');
+  }
 
 </script>

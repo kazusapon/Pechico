@@ -39,12 +39,16 @@ class InquiriesController < ApplicationController
 
   private
 
+  def search_params
+    params.require(:q).permit!
+  end
+
   def inquiries_params
     params.require(:inquiry).permit(
       :inquiry_date, :start_time, :end_time,
       :system_id, :user_id, :inquiry_classification_id, :inquiry_method_id,
       :company_name, :telephone_number, :sub_telephone_number, :inquirier_name, :inquirier_kind_id,
-      :question, :answer, :relation_inquiry_id, :is_completed
+      :question, :answer, :inquiry_relation_id, :is_completed
     )
   end
 

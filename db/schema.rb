@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_13_144341) do
+ActiveRecord::Schema.define(version: 2021_09_22_150936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,11 +49,11 @@ ActiveRecord::Schema.define(version: 2021_09_13_144341) do
     t.text "answer"
     t.boolean "is_completed"
     t.date "inquiry_date"
-    t.date "start_time"
-    t.date "end_time"
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.time "start_time"
+    t.time "end_time"
   end
 
   create_table "inquiry_classifications", force: :cascade do |t|

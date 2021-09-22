@@ -3,8 +3,8 @@ class Inquiry < ApplicationRecord
   belongs_to :user
   belongs_to :inquiry_classification
   belongs_to :inquirier_kind
-  belongs_to :approver, class_name: 'User'
-  belongs_to :inquiry_relation
+  belongs_to :approver, class_name: 'User', optional: true
+  belongs_to :inquiry_relation, optional: true
 
   validates :inquiry_date, presence: true
   validates :start_time, presence: true

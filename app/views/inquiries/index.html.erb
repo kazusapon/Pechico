@@ -77,6 +77,14 @@
             </thead>
             <tbody>
               <% @inquiries.each_with_index do |inquiry, i| %>
+                <td><%= i + 1 %></td>
+                <td><%= inquiry.inquiry_datetime_text %></td>
+                <td><%= inquiry.system_name %></td>
+                <td><%= inquiry.company_name %></td>
+                <td><%= inquiry.inquirier_name %></td>
+                <td><%= inquiry.telephone_number %></td>
+                <td><%= inquiry.question %></td>
+                <td><%= button_tag '詳細', type: 'button', class: 'btn btn-info' %></td>
               <% end %>
             </tbody>
           </table>
