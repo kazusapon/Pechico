@@ -49,6 +49,16 @@
                 <%= f.label :question_or_answer_cont, 'お問合せ／回答内容' %>
                 <%= f.search_field :question_or_answer_cont, class: 'form-control' %>
               </div>
+              <div class="form-group col col-sm-1">
+                <%= f.label :approver_id_null, '承認／未承認' %>
+                <%= f.select :approver_id_null, 
+                    options_for_select({'承認のみ': false, '未承認のみ': true}), { include_blank: 'すべて' }, { class: 'form-control' } %>
+              </div>
+              <div class="form-group col col-sm-1">
+                <%= f.label :deleted_at_null, '削除' %>
+                <%= f.select :deleted_at_null, 
+                    options_for_select({'削除のみ': true}), { include_blank: 'すべて' }, { class: 'form-control' } %>
+              </div>
             </div>
             <div class="row">              
               <div class="text-right">
@@ -84,7 +94,10 @@
                 <td><%= inquiry.inquirier_name %></td>
                 <td><%= inquiry.telephone_number %></td>
                 <td><%= inquiry.question %></td>
-                <td><%= button_tag '詳細', type: 'button', class: 'btn btn-info' %></td>
+                <td>
+                  <%= button_tag '詳細', type: 'button', class: 'btn btn-info' %>
+                  <%= button_tag '削除', type: 'button', class: 'btn btn-danger' %>
+                </td>
               <% end %>
             </tbody>
           </table>
@@ -94,7 +107,6 @@
     </div>
   </section>
 </div>
-
 
 <div id="modal_area">
 </div>

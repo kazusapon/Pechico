@@ -1,4 +1,12 @@
 module ApplicationHelper
+  # 詳細ボタンの生成
+  def detail_button(url, method, is_ajax=false)
+    btn = ''
+    btn += link_to('詳細', url, method: :get, remote: is_ajax, class: 'btn btn-info mr-2')
+    
+    return btn.html_safe
+  end
+
   # 編集ボタンの生成
   def edit_button(url, method, is_ajax=false)
     btn = ''
