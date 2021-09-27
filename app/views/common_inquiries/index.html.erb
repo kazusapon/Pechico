@@ -1,0 +1,50 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <div class="container-fluid">
+      <h4 class="m-0 text-dark">よくある問合せ一覧</h4>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      
+      <div class="card">
+        <div class="card-header">
+          <div class="text-right">
+            <%= link_to '新規追加', new_inquiry_classification_path, method: :get, remote: true, class: 'btn btn-primary' %>
+          </div>
+        </div>
+
+        <div class="card-body p-0">
+          <table class="table table-striped">
+            <thead>
+              <th>No</th>
+              <th>システム名</th>
+              <th>問合せ</th>
+              <th>回答</th>
+              <th>表示順</th>
+              <th></th>
+            </thead>
+
+            <tbody>
+              <% @common_inquiries.each_with_index do |common_inquiry, i| %>
+                <tr>
+                  <td><%= i + 1 %></td>
+                  <td><%= common_inquiry.system_id %></td>
+                  <td><%= common_inquiry.question %></td>
+                  <td><%= common_inquiry.answer %></td>
+                  <td><%= common_inquiry.sort_order %></td>
+                  <td><%= common_inquiry_operate_button(common_inquiry) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%= paginate @common_inquiries %>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="modal_area">
+</div>

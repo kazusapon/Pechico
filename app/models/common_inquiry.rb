@@ -1,0 +1,2 @@
+class CommonInquiry < ApplicationRecord
+end

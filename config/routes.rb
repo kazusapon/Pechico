@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :systems, except: :show
   resources :inquiry_classifications, except: :show
   resources :inquirier_kinds, except: :show
+  resources :common_inquiries, except: :show
 
   resource :session do
     collection do
