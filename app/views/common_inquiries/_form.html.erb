@@ -1,0 +1,47 @@
+<div id="common_inquiries_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" area-modal="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">よくある問合せの保存</h4>
+      </div>
+
+      <%= form_with model: @common_inquiry, local: false do |f| %>
+        <div id="errors"></div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="form-group col-sm-3">
+              <%= f.label :system_id, 'システム' %>
+              <%= f.select :system_id, @systems, {}, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :question, '問合せ' %>
+            <%= f.text_area :question, row: 5, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :answer, '回答' %>
+            <%= f.text_area :answer, row: 5, class: 'form-control' %>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-2">
+              <%= f.label :sort_order, '表示順' %>
+              <%= f.text_field :sort_order, class: 'form-control' %>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= button_tag '閉じる', type: 'button', class: 'btn btn-default', id: 'modal_close' %>
+          <%= f.submit '保存', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  $('#modal_close').on('click', () => {
+    $('#common_inquiries_modal').modal('hide');
+  });
+
+</script>
