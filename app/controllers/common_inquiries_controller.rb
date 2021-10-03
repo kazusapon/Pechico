@@ -28,13 +28,28 @@ class CommonInquiriesController < ApplicationController
   end
 
   def edit
+    select_items
+    @common_inquiry = CommonInquiry.find(params[:id])
+    render 'save_modal'
   end
 
   def update
+    @common_inquiry = CommonInquiry.find(params[:id])
+    @common_inquiry.update!(common_inquiry_params)
+    respond_to do |format|
+      format.html
+      format.js { render js: "window.location.href = '#{common_inquiries_path}'" }
+    end
+  rescue ActiveRecord::RecordInvalid => e
+    select_items
+    respond_to do |format|
+      format.html
+      format.js { render partial: 'common_inquiries/error.js.erb' }
+    end
   end
   
   def destroy
-    common_inquiry = CommonInquiry.find(:id)
+    common_inquiry = CommonInquiry.find(params[:id])
     common_inquiry.destroy
     redirect_to action: 'index'
   end

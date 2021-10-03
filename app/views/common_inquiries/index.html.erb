@@ -31,7 +31,6 @@
               <th>システム名</th>
               <th>問合せ</th>
               <th>回答</th>
-              <th>表示順</th>
               <th></th>
             </thead>
 
@@ -42,7 +41,6 @@
                   <td><%= common_inquiry.system.short_name %></td>
                   <td><%= common_inquiry.question %></td>
                   <td><%= common_inquiry.answer %></td>
-                  <td><%= common_inquiry.sort_order %></td>
                   <td><%= common_inquiry_operate_button(common_inquiry) %></td>
                 </tr>
               <% end %>
