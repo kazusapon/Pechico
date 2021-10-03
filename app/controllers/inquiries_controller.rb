@@ -4,7 +4,15 @@ class InquiriesController < ApplicationController
   def index
     set_select_box_items
     @q = Inquiry.ransack(params[:q])
-    @inquiries = @q.result.page(params[:page]).per(PER)
+    @inquiries = @q.result
+                   .includes(:system)
+                   .includes(:user)
+                   .includes(:inquirier_kind)
+                   .includes(:inquiry_classification)
+                   .order(inquiry_date: :desc)
+                   .order(start_time: :desc)
+                   .page(params[:page])
+                   .per(PER)
   end
 
   def show
@@ -33,6 +41,15 @@ class InquiriesController < ApplicationController
   end
 
   def destroy
+    inquiry = Inquiry.find(params[:id])
+    inquiry.logical_delete
+    redirect_to action: 'index'
+  end
+
+  def resurrect
+    inquiry = Inquiry.find(params[:id])
+    inquiry.resurrect
+    redirect_to action: 'index'
   end
 
   def related_inquiries

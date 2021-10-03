@@ -20,6 +20,10 @@ Rails.application.routes.draw do
     collection do
       get 'related_inquiries', to: 'inquiries#related_inquiries'
     end
+
+    member do
+      get 'resurrect', to: 'inquiries#resurrect'
+    end
   end
 
   resource :users do

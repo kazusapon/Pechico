@@ -96,7 +96,7 @@
                 <td><%= inquiry.question %></td>
                 <td>
                   <%= button_tag '詳細', type: 'button', class: 'btn btn-info' %>
-                  <%= button_tag '削除', type: 'button', class: 'btn btn-danger' %>
+                  <%= inquiry_operate_button(inquiry) %>
                 </td>
               <% end %>
             </tbody>

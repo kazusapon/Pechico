@@ -36,6 +36,18 @@ class Inquiry < ApplicationRecord
     return date + time
   end
 
+  def logical_delete
+    self.update!(deleted_at: DateTime.now)
+  end
+
+  def resurrect
+    self.update!(deleted_at: nil)
+  end
+
+  def deleted?
+    self.deleted_at.present?
+  end
+
   def self.complete_options
     return { '未完了' => is_completeds[:incomplete], '完了' => is_completeds[:complete], }
   end
