@@ -20,7 +20,7 @@ class SystemsController < ApplicationController
   rescue ActiveRecord::RecordInvalid => e
     respond_to do |format|
       format.html
-      format.js { render partial: 'systems/error.js.erb' }
+      format.js { render partial: 'shared/modal_errors.js.erb', locals: { model: @system } }
     end
   end
 
@@ -39,7 +39,7 @@ class SystemsController < ApplicationController
   rescue ActiveRecord::RecordInvalid => e
     respond_to do |format|
       format.html
-      format.js { render partial: 'systems/error.js.erb' }
+      format.js { render partial: 'shared/modal_errors.js.erb', locals: { model: @system } }
     end
   end
 

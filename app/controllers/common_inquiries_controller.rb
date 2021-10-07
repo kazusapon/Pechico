@@ -24,7 +24,7 @@ class CommonInquiriesController < ApplicationController
     select_items
     respond_to do |format|
       format.html
-      format.js { render partial: 'common_inquiries/error.js.erb' }
+      format.js { render partial: 'shared/modal_errors.js.erb', locals: { model: @common_inquiry } }
     end
   end
 
@@ -45,7 +45,7 @@ class CommonInquiriesController < ApplicationController
     select_items
     respond_to do |format|
       format.html
-      format.js { render partial: 'common_inquiries/error.js.erb' }
+      format.js { render partial: 'shared/modal_errors.js.erb', locals: { model: @common_inquiry } }
     end
   end
   

@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   rescue ActiveRecord::RecordInvalid => e
     respond_to do |format|
       format.html
-      format.js { render partial: 'users/error.js.erb' }
+      format.js { render partial: 'shared/modal_errors.js.erb', locals: { model: @user } }
     end
   end
 
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   rescue ActiveRecord::RecordInvalid => e
     respond_to do |format|
       format.html
-      format.js { render partial: 'users/error.js.erb' }
+      format.js { render partial: 'shared/modal_errors.js.erb', locals: { model: @user } }
     end
   end
 

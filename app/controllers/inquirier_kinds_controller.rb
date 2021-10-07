@@ -20,7 +20,7 @@ class InquirierKindsController < ApplicationController
   rescue ActiveRecord::RecordInvalid => e
     respond_to do |format|
       format.html
-      format.js { render partial: 'inquirier_kinds/error.js.erb' }
+      format.js { render partial: 'shared/modal_errors.js.erb', locals: { model: @inquirier_kind } }
     end
   end
 
@@ -39,7 +39,7 @@ class InquirierKindsController < ApplicationController
   rescue ActiveRecord::RecordInvalid => e
     respond_to do |format|
       format.html
-      format.js { render partial: 'inquirier_kinds/error.js.erb' }
+      format.js { render partial: 'shared/modal_errors.js.erb', locals: { model: @inquirier_kind } }
     end
   end
 
