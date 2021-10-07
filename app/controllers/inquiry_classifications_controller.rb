@@ -11,7 +11,8 @@ class InquiryClassificationsController < ApplicationController
   end
 
   def create
-    @inquiry_classification = InquiryClassification.create!(inquiry_classification_params)
+    @inquiry_classification = InquiryClassification.new(inquiry_classification_params)
+    @inquiry_classification.save!
     respond_to do |format|
       format.html
       format.js { render js: "window.location.href = '#{inquiry_classifications_path}'" }

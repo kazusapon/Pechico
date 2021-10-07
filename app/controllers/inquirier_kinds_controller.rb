@@ -11,7 +11,8 @@ class InquirierKindsController < ApplicationController
   end
 
   def create
-    @inquirier_kind = InquirierKind.create!(inquirier_kind_params)
+    @inquirier_kind = InquirierKind.new(inquirier_kind_params)
+    @inquirier_kind.save!
     respond_to do |format|
       format.html
       format.js { render js: "window.location.href = '#{inquirier_kinds_path}'" }

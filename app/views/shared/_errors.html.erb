@@ -1,4 +1,4 @@
-<% if model.errors.any? %>
+<% if model.present? && model.errors.any? %>
   <div class="alert alert-danger">
     <i class="fas fa-exclamation-triangle"></i>&nbsp;エラーがあります
     <ul>

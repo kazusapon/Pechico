@@ -11,7 +11,8 @@ class SystemsController < ApplicationController
   end
 
   def create
-    @system = System.create!(system_params)
+    @system = System.new(system_params)
+    @system.save!
     respond_to do |format|
       format.html
       format.js { render js: "window.location.href = '#{systems_path}'" }

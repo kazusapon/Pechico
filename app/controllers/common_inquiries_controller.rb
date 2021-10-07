@@ -14,7 +14,8 @@ class CommonInquiriesController < ApplicationController
   end
 
   def create
-    @common_inquiry = CommonInquiry.create!(common_inquiry_params)
+    @common_inquiry = CommonInquiry.new(common_inquiry_params)
+    @common_inquiry.save!
     respond_to do |format|
       format.html
       format.js { render js: "window.location.href = '#{common_inquiries_path}'" }
