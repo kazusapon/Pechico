@@ -4,7 +4,7 @@ module SystemsHelper
   def system_operate_button(sys)
     str = ''
     if sys.deleted?
-      str += resurrect_button(resurrect_systems_path(id: sys.id))
+      str += resurrect_button(resurrect_system_path(sys.id))
       return str.html_safe
     end
     str += edit_button(edit_system_path(id: sys.id), 'get', true)

@@ -2,15 +2,15 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html]
   root to: 'sessions#new'
 
-  resources :sessions, only: [:new, :create]
   resources :dashboard, only: [:index]
-  resources :users, except: :show
-  resources :systems, except: :show
-  resources :inquiry_classifications, except: :show
-  resources :inquirier_kinds, except: :show
-  resources :common_inquiries, except: :show
+  
+  resources :common_inquiries, except: :show do
+    collection do
+      get 'search', to: 'common_inquiry#search'
+    end
+  end
 
-  resource :session do
+  resources :sessions, only: [:new, :create] do
     collection do
       get 'logout', to: 'sessions#destroy'
     end
@@ -26,25 +26,25 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :users do
+  resources :users, except: :show do
     member do
       get 'resurrect'
     end
   end
 
-  resource :systems do
+  resources :systems, except: :show do
     member do
       get 'resurrect'
     end
   end
 
-  resource :inquiry_classifications do
+  resources :inquiry_classifications, except: :show do
     member do
       get 'resurrect'
     end
   end
 
-  resource :inquirier_kinds do
+  resources :inquirier_kinds, except: :show do
     member do
       get 'resurrect'
     end
