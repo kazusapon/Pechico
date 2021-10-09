@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   
   resources :common_inquiries, except: :show do
     collection do
-      get 'search', to: 'common_inquiry#search'
+      get 'search', to: 'common_inquiries#search'
     end
   end
 

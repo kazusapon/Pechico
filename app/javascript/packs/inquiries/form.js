@@ -22,3 +22,15 @@ $('#inquiry_relation_search').on('click', () => {
   );
 });
 
+// よくある作業検索
+$('#common_inquiry_search').on('click', async () => {
+  const system_id = $('#inquiry_system_id').val();
+  const url = '/common_inquiries/search';
+  const params = {system_id: system_id};
+
+  // _search_inquiry_modal.html.erbのJSメソッド実行
+  const result = await searchInquiries(url, params);
+  buildInquiriesRow(result);
+
+  $('#modal_system_select').val(system_id);
+});

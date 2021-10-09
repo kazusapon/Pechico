@@ -1,0 +1,101 @@
+<div id="search_inquiry_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" area-modal="true">
+  <div class="modal-dialog xlarge_modal" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="container-fluid">
+          <h4 class="modal-title">問合せ検索</h4>
+          <br />
+          <div class="row">
+            <div class="form-group col col-sm-2">
+              <%= label_tag :modal_system_id, 'システム' %>
+              <%= select_tag :modal_system_id, options_for_select(@systems), {class: 'form-control', id: 'modal_system_select'} %>
+            </div>
+          </div>
+          <div class="row">              
+            <div class="text-right">
+              <%= button_tag '検索', type: 'button', class: 'btn btn-success col col-sm-1', id: 'inquiry_search_btn' %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-body p-0">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>問合せ内容</th>
+              <th>回答内容</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody id="searched_inquiries">
+          </tbody>
+        </table>
+      </div>
+
+      <div class="modal-footer">
+        <%= button_tag '閉じる', type: 'button', class: 'btn btn-default modal_close' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  $('.modal_close').on('click', () => {
+    $('#search_inquiry_modal').modal('hide');
+  });
+
+  // よくある作業モーダル検索ボタンクリック
+  $('#inquiry_search_btn').on('click', async () => {
+    const system_id = $('#modal_system_select').val();
+    const url = '<%= search_common_inquiries_path %>';
+    const params = {system_id: system_id};
+
+    const result = await searchInquiries(url, params);
+    buildInquiriesRow(result);
+  });
+
+  function searchInquiries(url, params) {
+    return $.ajax(
+      {
+        type: 'GET',
+        data: params,
+        url: url,
+        dataType: 'json'
+      }
+    );
+  }
+
+  function buildInquiriesRow(inquiry) {
+    removeSearchInquiriesRow();
+
+    $.each(inquiry, (i, data) => {
+      let row = '<tr>';
+      row += `  <td class="question">${data.question}</td>`;
+      row += `  <td class="answer">${data.answer}</td>`;
+      row += '  <td><input type="button" value="選択" class="btn btn-info" onclick="javascript: selectedInquiry(event);"></td>';
+      row += '</tr>';
+
+      $('#searched_inquiries').append(row);
+    });
+
+    $('#search_inquiry_modal').modal('show');
+  }
+
+  function selectedInquiry(event) {
+    const selectedRow = event.currentTarget.closest('tr');
+    const question = $(selectedRow).find('.question').text();
+    const answer = $(selectedRow).find('.answer').text();
+    
+    $('#inquiry_question').val(question);
+    $('#inquiry_answer').val(answer);
+    $('#search_inquiry_modal').modal('hide');
+  }
+
+  function removeSearchInquiriesRow() {
+    $('#searched_inquiries').children('tr').remove();
+  }
+
+</script>

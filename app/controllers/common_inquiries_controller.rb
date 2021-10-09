@@ -55,6 +55,11 @@ class CommonInquiriesController < ApplicationController
     redirect_to action: 'index'
   end
 
+  def search
+    common_inquiries = CommonInquiry.search_at_system_id(params[:system_id])
+    render json: common_inquiries.to_json
+  end
+
   private
 
   def select_items
