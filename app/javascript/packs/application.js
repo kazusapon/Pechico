@@ -3,13 +3,17 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-var jQuery = require('jquery');
-global.$ = global.jQuery = jQuery;
-window.$ = window.jQuery = jQuery;
+var jQuery = require('jquery')
+global.$ = global.jQuery = jQuery
+window.$ = window.jQuery = jQuery
 
 require("admin-lte");
 
 import 'bootstrap';
+
+// stylesheets
+require("../stylesheets/application.scss");
+
 import "@fortawesome/fontawesome-free/js/all";
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
@@ -32,9 +36,6 @@ $(document).on("turbolinks:load", () => {
   }
   $(".timepickr").flatpickr(time_config);
 });
-
-// stylesheets
-require("../stylesheets/application.scss");
 
 Rails.start()
 Turbolinks.start()
