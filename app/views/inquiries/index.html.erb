@@ -65,7 +65,7 @@
                 <%= f.submit '検索', class: 'btn btn-success col col-sm-1 mr-2' %>
                 <%= button_tag 'CSV出力', type: 'button', class: 'btn btn-info col col-sm-1 mr-2' %>
                 <%= button_tag 'Excel出力', type: 'button', class: 'btn btn-info col col-sm-1 mr-2' %>
-                <%= link_to '新規登録', new_inquiry_path, class: 'btn btn-primary col col-sm-1 mr-2' %>
+                <%= link_to '新規登録', new_inquiry_path, data: {"turbolinks" => false}, class: 'btn btn-primary col col-sm-1 mr-2' %>
               </div>
             </div>
           <% end %>

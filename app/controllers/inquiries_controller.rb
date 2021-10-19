@@ -22,8 +22,8 @@ class InquiriesController < ApplicationController
     set_select_box_items
     @inquiry = Inquiry.new
     @inquiry.inquiry_date = Date.today
-    @inquiry.start_time = Time.now
-    @inquiry.end_time = Time.now
+    @inquiry.start_time = Time.zone.now.strftime('%H:%M')
+    @inquiry.end_time = Time.zone.now.strftime('%H:%M')
   end
 
   def create
