@@ -1,6 +1,7 @@
 class InquiriesController < ApplicationController
   PER = 10
-
+  MOST_RECENT = 100
+  
   def index
     set_select_box_items
     @q = Inquiry.ransack(params[:q])
@@ -67,6 +68,14 @@ class InquiriesController < ApplicationController
                        .where('answer LIKE ?', "%#{params[:answer]}%")
                        .order(inquiry_date: :desc)
                        .order(start_time: :desc)
+    render json: inquiries.to_json
+  end
+
+  def most_recent_search
+    inquiries = Inquiry.where(system_id: params[:system_id])
+                       .order(inquiry_date: :desc)
+                       .order(start_time: :desc)
+                       .limit(MOST_RECENT)
     render json: inquiries.to_json
   end
 

@@ -28,7 +28,26 @@ $('#inquiry_search').on('click', async () => {
   modalQuestionAnswerDisabled();
   const system_id = $('#inquiry_system_id').val();
   const url = '/common_inquiries/search';
-  const params = {system_id: system_id};
+  const params = {
+    system_id: system_id
+  };
+
+  const result = await searchInquiries(url, params);
+  buildInquiriesRow(result);
+
+  $('#modal_system_select').val(system_id);
+  $('#search_url').val(url);
+});
+
+// よくある作業検索
+$('#most_recent_search').on('click', async () => {
+  initModalSearchItems();
+  modalQuestionAnswerDisabled();
+  const system_id = $('#inquiry_system_id').val();
+  const url = '/inquiries/most_recent_search';
+  const params = {
+    system_id: system_id
+  };
 
   const result = await searchInquiries(url, params);
   buildInquiriesRow(result);
