@@ -23,7 +23,7 @@ $('#inquiry_relation_search').on('click', () => {
 });
 
 // よくある作業検索
-$('#common_inquiry_search').on('click', async () => {
+$('#inquiry_search').on('click', async () => {
   initModalSearchItems();
   modalQuestionAnswerDisabled();
   const system_id = $('#inquiry_system_id').val();
@@ -76,7 +76,7 @@ $('#answer_search').on('click', async () => {
 });
 
 // よくある作業モーダル検索ボタンクリック
-$('#common_inquiry_search_btn').on('click', async () => {
+$('#inquiry_search_btn').on('click', async () => {
   const system_id = $('#modal_system_select').val();
   const question = $('#modal_question').val();
   const answer = $('#modal_answer').val();
@@ -116,7 +116,7 @@ function buildInquiriesRow(inquiry) {
     commonInuqirySelectButtonEventListner();
   });
 
-  $('#search_common_inquiry_modal').modal('show');
+  $('#search_inquiry_modal').modal('show');
 }
 
 // よくある問合せの選択ボタンのイベントリスナー
@@ -129,7 +129,7 @@ function commonInuqirySelectButtonEventListner() {
     
     $('#inquiry_question').val(question);
     $('#inquiry_answer').val(answer);
-    $('#search_common_inquiry_modal').modal('hide');
+    $('#search_inquiry_modal').modal('hide');
   });
 }
 
