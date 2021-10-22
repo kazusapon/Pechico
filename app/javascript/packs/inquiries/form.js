@@ -24,6 +24,8 @@ $('#inquiry_relation_search').on('click', () => {
 
 // よくある作業検索
 $('#common_inquiry_search').on('click', async () => {
+  initModalSearchItems();
+  modalQuestionAnswerDisabled();
   const system_id = $('#inquiry_system_id').val();
   const url = '/common_inquiries/search';
   const params = {system_id: system_id};
@@ -32,13 +34,58 @@ $('#common_inquiry_search').on('click', async () => {
   buildInquiriesRow(result);
 
   $('#modal_system_select').val(system_id);
+  $('#search_url').val(url);
+});
+
+// 質問から回答を検索
+$('#question_search').on('click', async () => {
+  initModalSearchItems();
+  const system_id = $('#inquiry_system_id').val();
+  const question = $('#inquiry_question').val();
+  const url = '/inquiries/qa_search';
+  const params = {
+    system_id: system_id,
+    question: question
+  };
+
+  const result = await searchInquiries(url, params);
+  buildInquiriesRow(result);
+
+  $('#modal_system_select').val(system_id);
+  $('#modal_question').val(question);
+  $('#search_url').val(url);
+});
+
+// 回答から質問を検索
+$('#answer_search').on('click', async () => {
+  initModalSearchItems();
+  const system_id = $('#inquiry_system_id').val();
+  const answer = $('#inquiry_answer').val();
+  const url = '/inquiries/qa_search';
+  const params = {
+    system_id: system_id,
+    answer: answer
+  };
+
+  const result = await searchInquiries(url, params);
+  buildInquiriesRow(result);
+
+  $('#modal_system_select').val(system_id);
+  $('#modal_answer').val(answer);
+  $('#search_url').val(url);
 });
 
 // よくある作業モーダル検索ボタンクリック
-$('#inquiry_search_btn').on('click', async () => {
+$('#common_inquiry_search_btn').on('click', async () => {
   const system_id = $('#modal_system_select').val();
-  const url = '/common_inquiries/search';
-  const params = {system_id: system_id};
+  const question = $('#modal_question').val();
+  const answer = $('#modal_answer').val();
+  const url =  $('#search_url').val();
+  const params = {
+    system_id: system_id,
+    question: question,
+    answer: answer,
+  };
 
   const result = await searchInquiries(url, params);
   buildInquiriesRow(result);
@@ -69,7 +116,7 @@ function buildInquiriesRow(inquiry) {
     commonInuqirySelectButtonEventListner();
   });
 
-  $('#search_inquiry_modal').modal('show');
+  $('#search_common_inquiry_modal').modal('show');
 }
 
 // よくある問合せの選択ボタンのイベントリスナー
@@ -82,10 +129,24 @@ function commonInuqirySelectButtonEventListner() {
     
     $('#inquiry_question').val(question);
     $('#inquiry_answer').val(answer);
-    $('#search_inquiry_modal').modal('hide');
+    $('#search_common_inquiry_modal').modal('hide');
   });
 }
 
 function removeSearchInquiriesRow() {
   $('#searched_inquiries').children('tr').remove();
+}
+
+function initModalSearchItems() {
+  $('#modal_question').val('');
+  $('#modal_answer').val('');
+  $('#search_url').val('');
+
+  $('#modal_question').prop("disabled", false);
+  $('#modal_answer').prop("disabled", false);
+}
+
+function modalQuestionAnswerDisabled() {
+  $('#modal_question').prop("disabled", true);
+  $('#modal_answer').prop("disabled", true);
 }

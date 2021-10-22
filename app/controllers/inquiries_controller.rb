@@ -57,6 +57,19 @@ class InquiriesController < ApplicationController
     render 'related_inquiries'
   end
 
+  def qa_search
+    if params[:question].blank? && params[:answer].blank?
+      render json: [].to_json
+      return 
+    end
+    inquiries = Inquiry.where(system_id: params[:system_id])
+                       .where('question LIKE ?', "%#{params[:question]}%")
+                       .where('answer LIKE ?', "%#{params[:answer]}%")
+                       .order(inquiry_date: :desc)
+                       .order(start_time: :desc)
+    render json: inquiries.to_json
+  end
+
   private
 
   def search_params

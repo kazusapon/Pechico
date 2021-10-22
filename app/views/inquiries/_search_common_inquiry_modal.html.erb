@@ -1,4 +1,4 @@
-<div id="search_inquiry_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" area-modal="true">
+<div id="search_common_inquiry_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" area-modal="true">
   <div class="modal-dialog xlarge_modal" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -10,10 +10,19 @@
               <%= label_tag :modal_system_id, 'システム' %>
               <%= select_tag :modal_system_id, options_for_select(@systems), {class: 'form-control', id: 'modal_system_select'} %>
             </div>
+            <div class="form-group col col-sm-4">
+              <%= label_tag :modal_question, '問合せ' %>
+              <%= text_field_tag :modal_question, '', class: 'form-control', id: 'modal_question' %>
+            </div>
+            <div class="form-group col col-sm-4">
+              <%= label_tag :modal_answer, '回答' %>
+              <%= text_field_tag :modal_answer, '', class: 'form-control', id: 'modal_answer' %>
+            </div>
           </div>
           <div class="row">              
             <div class="text-right">
-              <%= button_tag '検索', type: 'button', class: 'btn btn-success col col-sm-1', id: 'inquiry_search_btn' %>
+              <%= button_tag '検索', type: 'button', class: 'btn btn-success col col-sm-1', id: 'common_inquiry_search_btn' %>
+              <%= hidden_field_tag :search_url, '', id: 'search_url' %>
             </div>
           </div>
         </div>
@@ -44,7 +53,7 @@
 <script>
 
   $('.modal_close').on('click', () => {
-    $('#search_inquiry_modal').modal('hide');
+    $('#search_common_inquiry_modal').modal('hide');
   });
 
 </script>

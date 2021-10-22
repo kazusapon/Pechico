@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :inquiries do
     collection do
       get 'related_inquiries', to: 'inquiries#related_inquiries'
+      get 'qa_search', to: 'inquiries#qa_search'
     end
 
     member do
