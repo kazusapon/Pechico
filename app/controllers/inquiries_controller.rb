@@ -39,6 +39,19 @@ class InquiriesController < ApplicationController
   end
 
   def edit
+    set_select_box_items
+    @inquiry = Inquiry.find(params[:id])
+  end
+
+  def update
+    @inquiry = Inquiry.find(params[:id])
+    @inquiry.update!(inquiries_params)
+
+    redirect_to action: :index
+  rescue ActiveRecord::RecordInvalid => e
+    set_select_box_items
+    
+    render :edit
   end
 
   def destroy
@@ -63,7 +76,8 @@ class InquiriesController < ApplicationController
       render json: [].to_json
       return 
     end
-    inquiries = Inquiry.where(system_id: params[:system_id])
+    inquiries = Inquiry.without_deleted
+                       .where(system_id: params[:system_id])
                        .where('question LIKE ?', "%#{params[:question]}%")
                        .where('answer LIKE ?', "%#{params[:answer]}%")
                        .order(inquiry_date: :desc)
@@ -72,7 +86,8 @@ class InquiriesController < ApplicationController
   end
 
   def most_recent_search
-    inquiries = Inquiry.where(system_id: params[:system_id])
+    inquiries = Inquiry.without_deleted
+                       .where(system_id: params[:system_id])
                        .order(inquiry_date: :desc)
                        .order(start_time: :desc)
                        .limit(MOST_RECENT)

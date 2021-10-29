@@ -13,7 +13,7 @@ module InquiriesHelper
       str += resurrect_button(resurrect_inquiry_path(inquiry))
       return str.html_safe
     end
-    str += edit_button(edit_inquiry_path(inquiry.id), 'get', true)
+    str += edit_button(edit_inquiry_path(inquiry.id), 'get', false, edit_inquiry_path(inquiry))
     str += delete_button(inquiry_path(inquiry.id))
     
     return str.html_safe

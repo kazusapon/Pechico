@@ -1,0 +1,18 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <div class="container-fluid">
+      <h4 class="m-0 text-dark">問合せ編集</h4>
+    </div>
+  </section>
+
+  <section class="content">
+    <%= render partial: 'form' %>
+  </section>
+</div>
+
+<%= render partial: 'search_inquiry_modal' %>
+
+<%= javascript_pack_tag 'inquiries/form' %>
+
+<div id="modal_area">
+</div>

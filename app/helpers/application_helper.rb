@@ -8,9 +8,9 @@ module ApplicationHelper
   end
 
   # 編集ボタンの生成
-  def edit_button(url, method, is_ajax=false)
+  def edit_button(url, method, is_ajax=false, use_turbolinks=true)
     btn = ''
-    btn += link_to('編集', url, method: method.to_sym, remote: is_ajax, class: 'btn btn-secondary mr-2')
+    btn += link_to('編集', url, method: method.to_sym, remote: is_ajax, class: 'btn btn-secondary mr-2', data: {turbolinks: use_turbolinks})
     
     return btn.html_safe
   end
