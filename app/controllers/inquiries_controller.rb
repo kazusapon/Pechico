@@ -112,7 +112,7 @@ class InquiriesController < ApplicationController
   end
 
   def set_select_box_items
-    @systems = System.without_deleted.pluck(:short_name, :id)
+    @systems = System.without_deleted.pluck(:name, :id)
     @users = User.without_deleted.pluck(:name, :id)
     @inquiry_classifications = InquiryClassification.without_deleted.pluck(:name, :id)
     @inquirier_kinds = InquirierKind.without_deleted.pluck(:name, :id)

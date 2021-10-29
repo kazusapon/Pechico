@@ -63,7 +63,7 @@ class CommonInquiriesController < ApplicationController
   private
 
   def select_items
-    @systems = System.without_deleted.pluck(:short_name, :id)
+    @systems = System.without_deleted.pluck(:name, :id)
   end
 
   def common_inquiry_params
