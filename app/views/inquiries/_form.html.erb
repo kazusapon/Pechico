@@ -5,6 +5,7 @@
       </div>
     -->
     <%= form_with model: @inquiry do |f| %>
+      <%= hidden_field_tag :inquiry_id, @inquiry.id, id: 'inquiry_id' %>
       <div class="card-body">
         <div class="row">
           <div class="form-group col col-sm-2">

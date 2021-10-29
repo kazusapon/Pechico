@@ -9,6 +9,7 @@ $('#relation_cancel_btn').on('click', () => {
 // 関連する問合せ検索
 $('#inquiry_relation_search').on('click', () => {
   const params = {
+    except_id: $('#inquiry_id').val(),
     telephone_number: $('#inquiry_telephone_number').val(),
     sub_telephone_number: $('#inquiry_sub_telephone_number').val()
   }

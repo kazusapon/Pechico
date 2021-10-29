@@ -18,6 +18,7 @@ $(document).on("turbolinks:load", () => {
   const time_config = {
     enableTime: true,
     noCalendar: true,
+    enableSeconds: false,
     dateFormat: "H:i",
     time_24hr: true
   }

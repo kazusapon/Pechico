@@ -33,7 +33,7 @@ class Inquiry < ApplicationRecord
     date = self.inquiry_date.strftime('%Y-%m-%d')
     time = self.start_time.strftime('%H:%M')
 
-    return date + time
+    return date + ' ' + time
   end
 
   def logical_delete
@@ -61,8 +61,9 @@ class Inquiry < ApplicationRecord
     }
   end
 
-  def self.search_related_inquiries(tel_no, sub_tel_no)
+  def self.search_related_inquiries(except_id, tel_no, sub_tel_no)
     inquiries = without_deleted
+                  .where.not(id: except_id)
                   .where(telephone_number: tel_no)
                   .or(
                     where(telephone_number: sub_tel_no)

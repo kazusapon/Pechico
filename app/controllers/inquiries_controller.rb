@@ -41,6 +41,8 @@ class InquiriesController < ApplicationController
   def edit
     set_select_box_items
     @inquiry = Inquiry.find(params[:id])
+    @inquiry.start_time = @inquiry.start_time.strftime('%H:%M')
+    @inquiry.end_time = @inquiry.end_time.strftime('%H:%M')
   end
 
   def update
@@ -67,7 +69,7 @@ class InquiriesController < ApplicationController
   end
 
   def related_inquiries
-    @inquiries = Inquiry.search_related_inquiries(params[:telephone_number], params[:sub_telephone_number])
+    @inquiries = Inquiry.search_related_inquiries(params[:except_id], params[:telephone_number], params[:sub_telephone_number])
     render 'related_inquiries'
   end
 
