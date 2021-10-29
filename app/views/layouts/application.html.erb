@@ -10,7 +10,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="hold-transition sidebar-mini">
+  <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
       <% unless log_in_page? %>
         <%= render partial: 'shared/top_nav' %>

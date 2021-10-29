@@ -28,12 +28,12 @@ class InquiriesController < ApplicationController
   end
 
   def create
-    @inquiry = Inquiry.create!(inquiries_params)
+    @inquiry = Inquiry.new(inquiries_params)
+    @inquiry.save!
 
     redirect_to action: :index
   rescue ActiveRecord::RecordInvalid => e
     set_select_box_items
-    @inquiry ||= Inquiry.new
     
     render :new
   end

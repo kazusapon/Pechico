@@ -1,10 +1,8 @@
 <div class="container-fluid">
   <div class="card">
-    <!-- バリデーションエラーを表示したいな
-      <div class="card-header hidden">
-      </div>
-    -->
     <%= form_with model: @inquiry do |f| %>
+      <%= render partial: 'shared/error_messages', locals: { model: @inquiry } %>
+      
       <%= hidden_field_tag :inquiry_id, @inquiry.id, id: 'inquiry_id' %>
       <div class="card-body">
         <div class="row">
