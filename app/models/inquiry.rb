@@ -36,6 +36,11 @@ class Inquiry < ApplicationRecord
     return date + ' ' + time
   end
 
+  def display_parent_inquiry
+    return nil if parent_inquiry.blank?
+    return inquiry_datetime_text + ' ' + parent_inquiry.company_name
+  end
+
   def logical_delete
     self.update!(deleted_at: DateTime.now)
   end

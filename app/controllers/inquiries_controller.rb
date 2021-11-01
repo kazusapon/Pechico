@@ -69,7 +69,6 @@ class InquiriesController < ApplicationController
   end
 
   def related_inquiries
-    p Inquiry.search_related_inquiries(params[:except_id], params[:telephone_number], params[:sub_telephone_number]).to_sql
     @inquiries = Inquiry.search_related_inquiries(params[:except_id], params[:telephone_number], params[:sub_telephone_number])
     render 'related_inquiries'
   end
@@ -108,7 +107,7 @@ class InquiriesController < ApplicationController
       :inquiry_date, :start_time, :end_time,
       :system_id, :user_id, :inquiry_classification_id, :inquiry_method_id,
       :company_name, :telephone_number, :sub_telephone_number, :inquirier_name, :inquirier_kind_id,
-      :question, :answer, :inquiry_relation_id, :is_completed
+      :question, :answer, :parent_inquiry_id, :is_completed
     )
   end
 

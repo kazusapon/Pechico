@@ -85,7 +85,7 @@
 
         <div class="row">
           <%= button_tag '関連する問合せを検索', type: 'button', id: 'inquiry_relation_search', class: 'btn btn-info col col-sm-2 m-3' %>
-          <%= text_field_tag :relation_text, '', class: 'form-control bg-default col col-sm-7 m-3', readonly: true %>
+          <%= text_field_tag :relation_text, @inquiry.display_parent_inquiry, class: 'form-control bg-default col col-sm-7 m-3', readonly: true %>
           <%= button_tag '選択解除', type: 'button', id: 'relation_cancel_btn', class: 'btn btn-default col col-sm-1 m-3' %>
           <%= f.hidden_field :parent_inquiry_id %>
         </div>
