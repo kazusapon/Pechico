@@ -4,7 +4,7 @@ class Inquiry < ApplicationRecord
   belongs_to :inquiry_classification
   belongs_to :inquirier_kind
   belongs_to :approver, class_name: 'User', optional: true
-  belongs_to :inquiry_relation, optional: true
+  belongs_to :parent_inquiry, class_name: 'Inquiry', optional: true
 
   validates :inquiry_date, presence: true
   validates :start_time, presence: true
@@ -62,6 +62,7 @@ class Inquiry < ApplicationRecord
   end
 
   def self.search_related_inquiries(except_id, tel_no, sub_tel_no)
+    except_id = except_id.blank? ? 0 : except_id
     inquiries = without_deleted
                   .where.not(id: except_id)
                   .where(telephone_number: tel_no)

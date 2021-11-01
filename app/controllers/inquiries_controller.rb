@@ -69,6 +69,7 @@ class InquiriesController < ApplicationController
   end
 
   def related_inquiries
+    p Inquiry.search_related_inquiries(params[:except_id], params[:telephone_number], params[:sub_telephone_number]).to_sql
     @inquiries = Inquiry.search_related_inquiries(params[:except_id], params[:telephone_number], params[:sub_telephone_number])
     render 'related_inquiries'
   end

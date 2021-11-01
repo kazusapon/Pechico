@@ -3,7 +3,7 @@
 // 連携解除
 $('#relation_cancel_btn').on('click', () => {
   $('#relation_text').val('');
-  $('#inquiry_inquiry_relation_id').val('');
+  $('#inquiry_parent_inquiry_id').val('');
 });
 
 // 関連する問合せ検索
