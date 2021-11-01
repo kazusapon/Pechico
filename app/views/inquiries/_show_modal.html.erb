@@ -1,0 +1,78 @@
+<div id="inquiry_show_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" area-modal="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">問合せ詳細</h4>
+      </div>
+
+      <div class="modal-body p-0">
+        <table class="table table-striped">
+          <tr>
+            <th scope="col">完了状況</th>
+            <td><%= Inquiry.complete_options.key(@inquiry.is_completed) %></td>
+          </tr>
+          <tr>
+            <th scope="col">承認状態</th>
+            <td><%= @inquiry.approve_datetime + @inquiry.approver_name %></td>
+          </tr>
+          <tr>
+            <th scope="col">着信日時</th>
+            <td><%= inquiry_datetime(@inquiry) %></td>
+          </tr>
+          <tr>
+            <th scope="col">システム名</th>
+            <td><%= @inquiry.system.name %></td>
+          </tr>
+          <tr>
+            <th scope="col">問合せ方法</th>
+            <td><%= Inquiry.inquiry_method_options.key(@inquiry.inquiry_method_id) %></td>
+          </tr>
+          <tr>
+            <th scope="col">問合せ元</th>
+            <td><%= @inquiry.company_name %></td>
+          </tr>
+          <tr>
+            <th scope="col">担当者</th>
+            <td><%= @inquiry.inquirier_name %></td>
+          </tr>
+          <tr>
+            <th scope="col">電話番号</th>
+            <td><%= @inquiry.telephone_number %></td>
+          </tr>
+          <tr>
+            <th scope="col">電話番号（予備）</th>
+            <td><%= @inquiry.sub_telephone_number %></td>
+          </tr>
+          <tr>
+            <th scope="col">問合せ分類</th>
+            <td><%= @inquiry.inquiry_classification.name %></td>
+          </tr>
+          <tr>
+            <th scope="col">問合せ内容</th>
+            <td><%= @inquiry.question %></td>
+          </tr>
+          <tr>
+            <th scope="col">回答者</th>
+            <td><%= @inquiry.user_name %></td>
+          </tr>
+          <tr>
+            <th scope="col">回答内容</th>
+            <td><%= @inquiry.answer %></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="modal-footer">
+        <%= button_tag '閉じる', type: 'button', class: 'btn btn-default', id: 'modal_close' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  $('#modal_close').on('click', () => {
+    $('#inquiry_show_modal').modal('hide');
+  });
+
+</script>

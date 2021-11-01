@@ -29,6 +29,16 @@ class Inquiry < ApplicationRecord
     return user.name
   end
 
+  def approver_name
+    return '' if self.approver.blank?
+    return self.approver.name
+  end
+
+  def approve_datetime
+    return '' if self.approve_at.blank?
+    return @inquiry.approve_at.try!(:strftime, '%Y-%m-%d %H:%M')
+  end
+
   def inquiry_datetime_text
     date = self.inquiry_date.strftime('%Y-%m-%d')
     time = self.start_time.strftime('%H:%M')
