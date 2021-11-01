@@ -30,4 +30,20 @@ module ApplicationHelper
     
     return btn.html_safe
   end
+
+  # 承認ボタン
+  def approve_button(url)
+    btn = ''
+    btn += link_to('承認', url, method: :get, class: 'btn primary mr-2')
+    
+    return btn.html_safe
+  end
+
+  # 承認取消ボタン
+  def approve_cancel_button(url)
+    btn = ''
+    btn += link_to('承認取消', url, method: :get, class: 'btn denger mr-2')
+    
+    return btn.html_safe
+  end
 end

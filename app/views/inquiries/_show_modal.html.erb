@@ -6,6 +6,9 @@
       </div>
 
       <div class="modal-body p-0">
+        <% if @inquiry.deleted_at.present? %>
+          <p class="text-danger">削除されています</p>
+        <% end %>
         <table class="table table-striped">
           <tr>
             <th scope="col">完了状況</th>
@@ -60,6 +63,11 @@
             <td><%= @inquiry.answer %></td>
           </tr>
         </table>
+        
+        <% if @inquiry.parent_inquiries.present? %>
+          <%= render partial: 'parent_inquiries', locals: { parent_inquiries: @inquiry.parent_inquiries } %>
+        <% end %>
+        
       </div>
 
       <div class="modal-footer">

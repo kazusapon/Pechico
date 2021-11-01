@@ -1,0 +1,35 @@
+<div class="accordion" id="parent_inquiries">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#parents" aria-expanded="true" aria-controls="parents">
+        <strong>関連する問合せがあります</strong>
+      </button>
+    </h2>
+    <div id="parents" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#parent_inquiries">
+      <div class="accordion-body">
+        <table class="table table-bordered bg-secondary">
+          <thead>
+            <th>着信日時</th>
+            <th>システム名</th>
+            <th>担当者</th>
+            <th>質問</th>
+            <th>回答者</th>
+            <th>回答</th>
+          </thead>
+          <tbody>
+            <% parent_inquiries.each do |inquiry| %>
+              <tr>
+                <td><%= @inquiry.inquiry_datetime_text %></td>
+                <td><%= @inquiry.system.short_name %></td>
+                <td><%= @inquiry.inquirier_name %></td>
+                <td><%= @inquiry.question %></td>
+                <td><%= @inquiry.user_name %></td>
+                <td><%= @inquiry.answer %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

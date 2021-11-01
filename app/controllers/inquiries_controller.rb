@@ -97,6 +97,16 @@ class InquiriesController < ApplicationController
     render json: inquiries.to_json
   end
 
+  def approve
+    inquiry = Inquiry.find(params[:id])
+    inquiry.approve(current_user)
+  end
+
+  def approve_cancel
+    inquiry = Inquiry.find(params[:id])
+    inquiry.approve_cancel
+  end
+
   private
 
   def search_params

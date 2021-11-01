@@ -51,6 +51,21 @@ class Inquiry < ApplicationRecord
     return inquiry_datetime_text + ' ' + parent_inquiry.company_name
   end
 
+  def parent_inquiries
+    parents = []
+    inquiry = self.parent_inquiry
+    loop do
+      if inquiry.blank?
+        break
+      end
+
+      parents << inquiry
+      inquiry = inquiry.parent_inquiry
+    end
+
+    return parents
+  end
+
   def logical_delete
     self.update!(deleted_at: DateTime.now)
   end
@@ -61,6 +76,18 @@ class Inquiry < ApplicationRecord
 
   def deleted?
     self.deleted_at.present?
+  end
+
+  def approve(user)
+    self.approver_id = user.id
+    self.approve_at = Time.zone.now
+    self.save!
+  end
+
+  def approve_cancel
+    self.approver_id = nil
+    self.approve_at = nil
+    self.save!
   end
 
   def self.complete_options
