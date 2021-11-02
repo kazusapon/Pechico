@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
     member do
       get 'resurrect', to: 'inquiries#resurrect'
+      get 'approve', to: 'inquiries#approve'
+      get 'approve_cancel', to: 'inquiries#approve_cancel'
     end
   end
 

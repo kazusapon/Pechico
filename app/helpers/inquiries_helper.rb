@@ -20,14 +20,23 @@ module InquiriesHelper
     return str.html_safe
   end
 
-  def inquiry_show_operate_button(inquiry)
+  def inquiry_show_operate_button(inquiry, user)
     str = ''
     if inquiry.deleted?
       str += resurrect_button(resurrect_inquiry_path(inquiry))
       return str.html_safe
     end
     str += edit_button(edit_inquiry_path(inquiry.id), 'get', false, edit_inquiry_path(inquiry))
-    str += approve_button(inquiry_path(inquiry.id))
+    
+    if user != inquiry.user
+      if inquiry.approver.blank?
+        str += approve_button(approve_inquiry_path(inquiry))
+      else
+        str += approve_cancel_button(approve_cancel_inquiry_path(inquiry))
+      end
+    end
+
+    return str.html_safe
   end
 
   def inquiry_datetime(inquiry)

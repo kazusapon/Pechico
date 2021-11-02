@@ -18,6 +18,7 @@ class InquiriesController < ApplicationController
 
   def show
     @inquiry = Inquiry.find(params[:id])
+    current_user
   end
 
   def new
@@ -100,11 +101,15 @@ class InquiriesController < ApplicationController
   def approve
     inquiry = Inquiry.find(params[:id])
     inquiry.approve(current_user)
+
+    redirect_to action: :index
   end
 
   def approve_cancel
     inquiry = Inquiry.find(params[:id])
     inquiry.approve_cancel
+
+    redirect_to action: :index
   end
 
   private

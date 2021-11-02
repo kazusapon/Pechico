@@ -36,7 +36,7 @@ class Inquiry < ApplicationRecord
 
   def approve_datetime
     return '' if self.approve_at.blank?
-    return @inquiry.approve_at.try!(:strftime, '%Y-%m-%d %H:%M')
+    return self.approve_at.try!(:strftime, '%Y-%m-%d %H:%M')
   end
 
   def inquiry_datetime_text
@@ -79,15 +79,17 @@ class Inquiry < ApplicationRecord
   end
 
   def approve(user)
-    self.approver_id = user.id
-    self.approve_at = Time.zone.now
-    self.save!
+    self.update!(
+      approver_id: user.id,
+      approve_at: Time.zone.now
+    )
   end
 
   def approve_cancel
-    self.approver_id = nil
-    self.approve_at = nil
-    self.save!
+    self.update!(
+      approver_id: nil,
+      approve_at: nil,
+    )
   end
 
   def self.complete_options

@@ -72,6 +72,7 @@
 
       <div class="modal-footer">
         <%= button_tag '閉じる', type: 'button', class: 'btn btn-default', id: 'modal_close' %>
+        <%= inquiry_show_operate_button(@inquiry, @current_user) %>
       </div>
     </div>
   </div>
