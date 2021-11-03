@@ -69,3 +69,7 @@ gem 'ransack'
 
 # ページネーション
 gem 'kaminari', :git => 'https://github.com/kaminari/kaminari'
+
+# Excel
+gem 'caxlsx'
+gem 'caxlsx_rails'
