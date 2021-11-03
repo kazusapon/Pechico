@@ -23,6 +23,10 @@ class InquiriesController < ApplicationController
     end
   end
 
+  def unregister_inquiries
+    
+  end
+
   def show
     current_user
     @inquiry = Inquiry.find(params[:id])
