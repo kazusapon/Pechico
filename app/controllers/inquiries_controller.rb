@@ -1,4 +1,5 @@
 class InquiriesController < ApplicationController
+  require 'csv'
   PER = 10
   MOST_RECENT = 100
   
@@ -14,11 +15,17 @@ class InquiriesController < ApplicationController
                    .order(start_time: :desc)
                    .page(params[:page])
                    .per(PER)
+    if params[:export_csv]
+      csv = generate_csv(@inquiries)
+      send_data(csv, type: 'text/csv', filename: 'inquiries.csv')
+    elsif params[:export_excel]
+      
+    end
   end
 
   def show
-    @inquiry = Inquiry.find(params[:id])
     current_user
+    @inquiry = Inquiry.find(params[:id])
   end
 
   def new
@@ -116,6 +123,31 @@ class InquiriesController < ApplicationController
 
   def search_params
     params.require(:q).permit!
+  end
+
+  def generate_csv(inquiries)
+    csv_data = CSV.generate(force_quotes: true) do |csv|
+      header = %w(No 着信日時 システム名 問合せ元 担当者 電話番号 電話番号（予備） 連絡方法 問合せ元種別 問合せ内容 回答者 回答内容 問合せ分類 完了状況)
+      csv << header
+      inquiries.order(id: :asc).each do |inquiry|
+        row = []
+        row << inquiry.id
+        row << inquiry.inquiry_datetime_text
+        row << inquiry.company_name
+        row << inquiry.inquirier_name
+        row << inquiry.telephone_number
+        row << inquiry.sub_telephone_number
+        row << Inquiry.inquiry_method_options.key(inquiry.inquiry_method_id)
+        row << inquiry.inquirier_kind.name
+        row << inquiry.question
+        row << inquiry.user_name
+        row << inquiry.answer
+        row << inquiry.inquiry_classification.name
+        row << Inquiry.complete_options.key(inquiry.is_completed)
+
+        csv << row
+      end
+    end
   end
 
   def inquiries_params
