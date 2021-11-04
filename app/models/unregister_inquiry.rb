@@ -1,2 +1,2 @@
-class CallHistroy < ApplicationRecord
+class UnregisterInquiry < ApplicationRecord
 end

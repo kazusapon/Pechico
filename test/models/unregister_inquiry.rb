@@ -1,6 +1,6 @@
 require "test_helper"
 
-class CallHistroyTest < ActiveSupport::TestCase
+class UnregisterInquiryTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

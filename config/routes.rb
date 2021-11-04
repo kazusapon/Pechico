@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   resources :inquiries do
     collection do
+      get 'unregister_inquiries', to: 'inquiries#unregister_inquiries'
       get 'related_inquiries', to: 'inquiries#related_inquiries'
       get 'qa_search', to: 'inquiries#qa_search'
       get 'most_recent_search', to: 'inquiries#most_recent_search'
