@@ -19,7 +19,7 @@ class InquiriesController < ApplicationController
       csv = generate_csv(@inquiries)
       send_data(csv, type: 'text/csv', filename: 'inquiries.csv')
     elsif params[:export_excel]
-      
+      render xlsx: 'index'
     end
   end
 
