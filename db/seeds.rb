@@ -7,9 +7,26 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # 初期ユーザ登録
-User.create!(
-  name: '管理者',
-  login_id: 'admin',
-  password: 'password',
-  password_confirmation: 'password'
-)
+if User.count < 1
+  User.create!(
+    name: '管理者',
+    login_id: 'admin',
+    password: 'password',
+    password_confirmation: 'password'
+  )
+end
+
+# 新着問合せ登録
+if UnregisterInquiry.count < 1
+  user = User.first
+  10.times do
+    UnregisterInquiry.create!(
+      user_id: user.id,
+      company_name: 'テスト工業株式会社',
+      telephone_number: '0852-22-3455',
+      inquiry_date: Time.zone.now.strftime('%Y-%m-%d'),
+      start_time: '10:20',
+      end_time: '13:00',
+    )
+  end
+end

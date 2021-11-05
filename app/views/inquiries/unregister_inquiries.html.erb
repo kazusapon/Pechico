@@ -1,0 +1,36 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <div class="container-fluid">
+      <h4 class="m-0 text-dark">新着問合せ</h4>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      
+      <div class="card">
+        <div class="card-header">
+        </div>
+
+        <div class="card-body p-0">
+          <div class="row">
+            <% @inquiries.each do |inquiry| %>
+              <div class="col col-sm-4">
+                <div class="card bg-light">
+                  <div class="card-header">
+                  </div>
+
+                  <div class="card-body">
+                  </div>
+
+                  <div class="card-footer">
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
