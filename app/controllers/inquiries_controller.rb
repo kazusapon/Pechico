@@ -45,10 +45,17 @@ class InquiriesController < ApplicationController
 
   def unregister_new
     set_select_box_items
+    @unregister_inquiry = UnregisterInquiry.find(params[:id])
     @inquiry = Inquiry.new
-    @inquiry.inquiry_date = Date.today
-    @inquiry.start_time = Time.zone.now.strftime('%H:%M')
-    @inquiry.end_time = Time.zone.now.strftime('%H:%M')
+    @inquiry.user_id = @unregister_inquiry.user_id
+    @inquiry.inquiry_method_id = Inquiry.inquiry_method_ids[:telephone]
+    @inquiry.inquiry_date = @unregister_inquiry.inquiry_date.strftime('%Y-%m-%d')
+    @inquiry.start_time = @unregister_inquiry.start_time.strftime('%H:%M')
+    @inquiry.end_time = @unregister_inquiry.end_time.strftime('%H:%M')
+    @inquiry.company_name = @unregister_inquiry.company_name
+    @inquiry.inquirier_name = @unregister_inquiry.inquirier_name
+    @inquiry.telephone_number = @unregister_inquiry.telephone_number
+    @inquiry.inquirier_kind_id = @unregister_inquiry.inquirier_kind_id
 
     render :new
   end
@@ -56,6 +63,11 @@ class InquiriesController < ApplicationController
   def create
     @inquiry = Inquiry.new(inquiries_params)
     @inquiry.save!
+
+    if params[:unregister_inquiry_id].present?
+      unregister_inquiry = UnregisterInquiry.find(params[:unregister_inquiry_id])
+      unregister_inquiry.destroy!
+    end
 
     redirect_to action: :index
   rescue ActiveRecord::RecordInvalid => e
@@ -85,17 +97,20 @@ class InquiriesController < ApplicationController
   def destroy
     inquiry = Inquiry.find(params[:id])
     inquiry.logical_delete
-    redirect_to action: 'index'
+    redirect_to action: :index
   end
 
   def unregister_destroy
-    
+    unregister_inquiry = UnregisterInquiry.find(params[:id])
+    unregister_inquiry.destroy!
+
+    redirect_to action: :unregister_inquiries
   end
 
   def resurrect
     inquiry = Inquiry.find(params[:id])
     inquiry.resurrect
-    redirect_to action: 'index'
+    redirect_to action: :index
   end
 
   def related_inquiries

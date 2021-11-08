@@ -4,6 +4,10 @@
       <%= render partial: 'shared/error_messages', locals: { model: @inquiry } %>
       
       <%= hidden_field_tag :inquiry_id, @inquiry.id, id: 'inquiry_id' %>
+      <% if @unregister_inquiry %>
+        <%= hidden_field_tag :unregister_inquiry_id, @unregister_inquiry.id %>
+      <% end %>
+
       <div class="card-body">
         <div class="row">
           <div class="form-group col col-sm-2">
@@ -98,7 +102,7 @@
         </div>
       </div>
 
-      <div class="card-footer">
+      <div class="card-footer text-right">
         <%= link_to '戻る', inquiries_path, class: 'btn btn-default' %>
         <%= f.submit '保存', class: 'btn btn-primary' %>
       </div>
