@@ -7,6 +7,14 @@ module ApplicationHelper
     return btn.html_safe
   end
 
+  # 登録ボタンの生成
+  def new_button(url, method, is_ajax=false, use_turbolinks=true)
+    btn = ''
+    btn += link_to('登録', url, method: method.to_sym, remote: is_ajax, class: 'btn btn-primary mr-2', data: {turbolinks: use_turbolinks})
+    
+    return btn.html_safe
+  end
+
   # 編集ボタンの生成
   def edit_button(url, method, is_ajax=false, use_turbolinks=true)
     btn = ''

@@ -43,6 +43,16 @@ class InquiriesController < ApplicationController
     @inquiry.end_time = Time.zone.now.strftime('%H:%M')
   end
 
+  def unregister_new
+    set_select_box_items
+    @inquiry = Inquiry.new
+    @inquiry.inquiry_date = Date.today
+    @inquiry.start_time = Time.zone.now.strftime('%H:%M')
+    @inquiry.end_time = Time.zone.now.strftime('%H:%M')
+
+    render :new
+  end
+
   def create
     @inquiry = Inquiry.new(inquiries_params)
     @inquiry.save!
@@ -76,6 +86,10 @@ class InquiriesController < ApplicationController
     inquiry = Inquiry.find(params[:id])
     inquiry.logical_delete
     redirect_to action: 'index'
+  end
+
+  def unregister_destroy
+    
   end
 
   def resurrect

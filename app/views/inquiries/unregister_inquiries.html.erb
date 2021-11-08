@@ -9,21 +9,33 @@
     <div class="container-fluid">
       
       <div class="card">
-        <div class="card-header">
-        </div>
-
         <div class="card-body p-0">
           <div class="row">
             <% @inquiries.each do |inquiry| %>
               <div class="col col-sm-4">
-                <div class="card bg-light">
-                  <div class="card-header">
-                  </div>
-
+                <div class="card bg-light m-2">
                   <div class="card-body">
+                    <ul class="list-group list-group-flush list-group-item-light">
+                      <li class="list-group-item">
+                        <i class="fas fa-clock mr-3"></i> <%= inquiry.inquiry_datetime %>
+                      </li>
+                      <li class="list-group-item">
+                        <i class="fas fa-industry mr-3"></i> <%= inquiry.company_name %>
+                      </li>
+                      <li class="list-group-item">
+                        <i class="fas fa-user-tie mr-3"></i> <%= inquiry.inquirier_name %>
+                      </li>
+                      <li class="list-group-item">
+                        <i class="fas fa-phone mr-3"></i> <%= inquiry.telephone_number %>
+                      </li>
+                    </ul>
                   </div>
 
                   <div class="card-footer">
+                    <div class="text-right">
+                      <%= delete_button(unregister_destroy_inquiry_path(inquiry)) %>
+                      <%= new_button(unregister_new_inquiries_path(id: inquiry.id), 'get', false, false) %>
+                    </div>
                   </div>
                 </div>
               </div>
