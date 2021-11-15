@@ -27,6 +27,8 @@ $(document).on("turbolinks:load", () => {
 
 require("../stylesheets/application.scss");
 require("admin-lte");
+require("chartkick");
+require("chart.js")
 require('bootstrap');
 
 import "@fortawesome/fontawesome-free/js/all";
@@ -34,7 +36,6 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-
 
 Rails.start()
 Turbolinks.start()
