@@ -11,18 +11,21 @@
         <div class="card-header border-bottom-0 p-0 pt-2">
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" id="whole-tab" data-toggle="pill" href="#whole-tab" role="tab" 
-                 aria-controls="whole" aria-selected="true">全体</a>
+              <a class="nav-link active" id="whole-tab" data-bs-toggle="tab" href="#whole" role="tab" 
+                 aria-controls="whole-tab" aria-selected="true">全体</a>
             </li>
             <li>
-              <a class="nav-link" id="parsonal-tab" data-toggle="pill" href="#parsonal-tab" role="tab"
-                 aria-controls="parsonal" aria-selected="false">ユーザ毎</a>
+              <a class="nav-link" id="parsonal-tab" data-bs-toggle="tab" href="#parsonal" role="tab"
+                 aria-controls="parsonal-tab" aria-selected="false">ユーザ毎</a>
             </li>
           </ul>
         </div>
 
         <div class="card-body">
-          
+          <div class="tab-content">
+            <%= render partial: 'whole_tab_item' %>
+            <%= render partial: 'parsonal_tab_item' %>
+          </div>
         </div>
       </div>
     </div>
