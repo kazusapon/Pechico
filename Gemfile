@@ -74,5 +74,6 @@ gem 'kaminari', :git => 'https://github.com/kaminari/kaminari'
 gem 'caxlsx'
 gem 'caxlsx_rails'
 
-#グラフ
+#グラフ描画
 gem 'chartkick'
+gem 'groupdate'

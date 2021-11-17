@@ -27,8 +27,7 @@ $(document).on("turbolinks:load", () => {
 
 require("../stylesheets/application.scss");
 require("admin-lte");
-require("chartkick");
-require("chart.js")
+require("chartkick/chart.js");
 require('bootstrap');
 
 import "@fortawesome/fontawesome-free/js/all";
