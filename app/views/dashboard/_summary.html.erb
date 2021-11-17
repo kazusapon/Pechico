@@ -1,0 +1,51 @@
+<div id="summary" class="row">
+  <div class="col col-sm-3">
+    <div class="info-box bg-info">
+      <span class="info-box-icon bg-info"><i class="fas fa-chart-line"></i></span>
+      <div class="info-box-content">
+        <b class="info-box-text">全件数</b>
+        <span class="info-box-number pl-2">
+          <%= @total_count %>件
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col col-sm-3">
+    <div class="info-box bg-info">
+      <span class="info-box-icon bg-info"><i class="fas fa-tachometer-alt"></i></span>
+      <div class="info-box-content">
+        <b class="info-box-text">平均応対時間</b>
+        <span class="info-box-number pl-2">
+          <%= @average_minutes.floor(2) %>分
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col col-sm-3">
+    <div class="info-box bg-info">
+      <span class="info-box-icon bg-info"><i class="fas fa-tachometer-alt"></i></span>
+      <div class="info-box-content">
+        <b class="info-box-text">最大応対時間</b>
+        <span class="info-box-number pl-2">
+          <%= @max_minutes.floor(2) %>分
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col col-sm-3">
+    <div class="info-box bg-info">
+      <span class="info-box-icon bg-info"><i class="fas fa-sort-amount-up"></i></span>
+      <div class="info-box-content">
+        <b class="info-box-text">問合せの多いシステム</b>
+        <span class="info-box-number pl-2">
+          <%= @maximum_system_name %>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
