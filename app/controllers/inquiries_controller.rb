@@ -24,10 +24,7 @@ class InquiriesController < ApplicationController
   end
 
   def unregister_inquiries
-    current_user
-    @inquiries = UnregisterInquiry.where(user_id: @current_user.id)
-                                  .order(inquiry_date: :desc)
-                                  .order(start_time: :desc)
+    @inquiries = UnregisterInquiry.search(current_user)
   end
 
   def show
