@@ -1,9 +1,89 @@
-<div id="summary" class="row">
-  <div class="card">
-    <div class="card-header">
-    </div>
+<h5 class="mt-4 mb-2">件数</h5>
+<hr>
 
-    <div class="card-body">
+<!-- 件数 -->
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-header bg-secondary">
+        問合せ件数
+      </div>
+
+      <div class="card-body">
+        <%= area_chart @inquiry_count %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header bg-secondary">
+    システム毎の件数
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col col-sm-7">
+        <%= line_chart @systems_line_chart, legend: "bottom" %>
+      </div>
+
+      <div class="col col-sm-5">
+        <%= pie_chart @systems_pie_chart, legend: "right" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header bg-secondary">
+    ユーザ毎の件数
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col col-sm-7">
+        <%= line_chart @users_line_chart, legend: "bottom" %>
+      </div>
+
+      <div class="col col-sm-5">
+        <%= pie_chart @users_pie_chart, legend: "right" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header bg-secondary">
+    問合せ分類毎の件数
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col col-sm-7">
+        <%= line_chart @classifications_line_chart, legend: "bottom" %>
+      </div>
+
+      <div class="col col-sm-5">
+        <%= pie_chart @classifications_pie_chart, legend: "right" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header bg-secondary">
+    問合せ元種別毎の件数
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col col-sm-7">
+        <%= line_chart @inquirier_kind_line_chart, legend: "bottom" %>
+      </div>
+
+      <div class="col col-sm-5">
+        <%= pie_chart @inquirier_kind_pie_chart, legend: "right" %>
+      </div>
     </div>
   </div>
 </div>
