@@ -1,24 +1,36 @@
 class DashboardController < ApplicationController
   def index
-    inquiries = Inquiry.without_deleted
-    inquiries.load
+    search_items
+    @q = Inquiry.without_deleted.ransack(params[:q])
+    inquiries = @q.result                   
     build_summary(inquiries)
     build_chart(inquiries)
 
-    if inquiries = UnregisterInquiry.search(current_user)
-      flash[:error] = "未登録の問合せが#{inquiries.size}件あります。"
+    if unregister_inquiries = UnregisterInquiry.search(current_user)
+      flash[:error] = "未登録の問合せが#{unregister_inquiries.size}件あります。"
     end
   end
 
   private
 
+  def search_items
+    @systems = System.order(:id).select(:id, :name)
+    @users = User.order(:id).select(:id, :name)
+  end
+
   def build_summary(inquiries)
     @total_count = inquiries.size
-    @average_minutes = inquiries.average('end_time - start_time') / 60
-    @max_minutes = inquiries.maximum('end_time - start_time') / 60
 
-    system_count = inquiries.group(:system_id).count().max{|a, b| a <=> b}
-    @maximum_system_name = System.find(system_count.first).name
+    @average_minutes = 0
+    @max_minutes = 0
+    @maximum_system_name = ''
+    if inquiries.present?
+      @average_minutes = inquiries.average('end_time - start_time') / 60
+      @max_minutes = inquiries.maximum('end_time - start_time') / 60
+
+      system_count = inquiries.group(:system_id).count().max{|a, b| a <=> b}
+      @maximum_system_name = System.find(system_count.first).name
+    end
   end
 
   def build_chart(inquiries)

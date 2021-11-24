@@ -2,7 +2,7 @@ module Dashboard
   class BuildChartService
     # 全件
     def self.build_inquiry_count(inquiries)
-      return inquiries.group_by_day(:inquiry_date).count
+      return inquiries.group_by_day(:inquiry_date, format: "%_m.%e").count
     end
 
     # System
@@ -11,7 +11,7 @@ module Dashboard
         {
           name: system.name,
           data: inquiries.where(system_id: system.id)
-                         .group_by_day(:inquiry_date)
+                         .group_by_day(:inquiry_date, format: "%_m.%e")
                          .count
         }
       }
@@ -29,7 +29,7 @@ module Dashboard
         {
           name: user.name,
           data: inquiries.where(user_id: user.id)
-                         .group_by_day(:inquiry_date)
+                         .group_by_day(:inquiry_date, format: "%_m.%e")
                          .count
         }
       }
@@ -47,7 +47,7 @@ module Dashboard
         {
           name: classification.name,
           data: inquiries.where(inquiry_classification_id: classification.id)
-                         .group_by_day(:inquiry_date)
+                         .group_by_day(:inquiry_date, format: "%_m.%e")
                          .count
         }
       }
@@ -65,7 +65,7 @@ module Dashboard
         {
           name: kind.name,
           data: inquiries.where(inquirier_kind_id: kind.id)
-                         .group_by_day(:inquiry_date)
+                         .group_by_day(:inquiry_date, format: "%_m.%e")
                          .count
         }
       }
