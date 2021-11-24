@@ -29,6 +29,7 @@ require("../stylesheets/application.scss");
 require("admin-lte");
 require("chartkick/chart.js");
 require('bootstrap');
+require('sweetalert2');
 
 import "@fortawesome/fontawesome-free/js/all";
 import Rails from "@rails/ujs"

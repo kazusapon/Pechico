@@ -1,6 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <%= link_to root_path, class: 'brand-link text-decoration-none', style:'line-height: 1.5;' do %>
-    <span class="brand-text">Pechico</span>
+    <span class="brand-text">
+      <%= Rails.configuration.x.app_setting[:application_name].sanitize %>
+    </span>
   <% end %>
 
   <div class="sidebar">

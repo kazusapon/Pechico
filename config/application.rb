@@ -23,5 +23,7 @@ module Pechico
     #config.active_record.default_timezone = :local
 
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.x.app_setting = config_for(:app_setting).deep_symbolize_keys
   end
 end

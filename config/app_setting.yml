@@ -1,0 +1,12 @@
+default: &default
+  application_name: 'Pechico'
+
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
