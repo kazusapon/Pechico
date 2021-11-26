@@ -2,7 +2,7 @@ module Dashboard
   class BuildChartService
     # 全件
     def self.build_inquiry_count(inquiries)
-      return inquiries.group_by_day(:inquiry_date, format: "%_m.%e").count
+      return inquiries.group_by_day(:inquiry_date, format: "%_m-%e").count
     end
 
     # System
@@ -11,7 +11,7 @@ module Dashboard
         {
           name: system.name,
           data: inquiries.where(system_id: system.id)
-                         .group_by_day(:inquiry_date, format: "%_m.%e")
+                         .group_by_day(:inquiry_date, format: "%_m-%e")
                          .count
         }
       }
@@ -29,7 +29,7 @@ module Dashboard
         {
           name: user.name,
           data: inquiries.where(user_id: user.id)
-                         .group_by_day(:inquiry_date, format: "%_m.%e")
+                         .group_by_day(:inquiry_date, format: "%_m-%e")
                          .count
         }
       }
@@ -47,7 +47,7 @@ module Dashboard
         {
           name: classification.name,
           data: inquiries.where(inquiry_classification_id: classification.id)
-                         .group_by_day(:inquiry_date, format: "%_m.%e")
+                         .group_by_day(:inquiry_date, format: "%_m-%e")
                          .count
         }
       }
@@ -65,7 +65,7 @@ module Dashboard
         {
           name: kind.name,
           data: inquiries.where(inquirier_kind_id: kind.id)
-                         .group_by_day(:inquiry_date, format: "%_m.%e")
+                         .group_by_day(:inquiry_date, format: "%_m-%e")
                          .count
         }
       }
@@ -75,6 +75,14 @@ module Dashboard
 
     def self.build_inquiry_count_of_inquirier_kinds_pie_chart(inquiries)
       inquiries.joins(:inquirier_kind).group("inquirier_kinds.name").count
+    end
+
+    def self.build_inquiry_speed_of_users_bar_chart(inquiries)
+      inquiries.joins(:user).group("users.name").average('(inquiries.end_time - inquiries.start_time) / 60')
+    end
+
+    def self.build_inquiry_speed_of_systems_bar_chart(inquiries)
+      inquiries.joins(:system).group("systems.name").average('(inquiries.end_time - inquiries.start_time) / 60')
     end
   end
 end

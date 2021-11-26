@@ -47,5 +47,8 @@ class DashboardController < ApplicationController
 
     @inquirier_kind_line_chart = Dashboard::BuildChartService.build_inquiry_count_of_inquirier_kinds_line_chart(inquiries)
     @inquirier_kind_pie_chart = Dashboard::BuildChartService.build_inquiry_count_of_inquirier_kinds_pie_chart(inquiries)
+
+    @users_speed_bar_chart = Dashboard::BuildChartService.build_inquiry_speed_of_users_bar_chart(inquiries)
+    @systems_speed_bar_chart = Dashboard::BuildChartService.build_inquiry_speed_of_systems_bar_chart(inquiries)
   end
 end
