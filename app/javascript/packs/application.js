@@ -3,7 +3,7 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-var jQuery = require('jquery')
+var jQuery = require('jquery');
 global.$ = global.jQuery = jQuery
 window.$ = window.jQuery = jQuery
 
