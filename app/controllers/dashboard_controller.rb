@@ -16,6 +16,8 @@ class DashboardController < ApplicationController
   def search_items
     @systems = System.order(:id).select(:id, :name)
     @users = User.order(:id).select(:id, :name)
+
+    @display_format = Dashboard::BuildChartService::DISPLAY_FORMAT
   end
 
   def build_summary(inquiries)
@@ -34,18 +36,18 @@ class DashboardController < ApplicationController
   end
 
   def build_chart(inquiries)
-    @inquiry_count = Dashboard::BuildChartService.build_inquiry_count(inquiries)
+    @inquiry_count = Dashboard::BuildChartService.build_inquiry_count(inquiries, params[:display_format])
     
-    @systems_line_chart = Dashboard::BuildChartService.build_inquiry_count_of_systems_line_chart(inquiries)
+    @systems_line_chart = Dashboard::BuildChartService.build_inquiry_count_of_systems_line_chart(inquiries, params[:display_format])
     @systems_pie_chart = Dashboard::BuildChartService.build_inquiry_count_of_systems_pie_chart(inquiries)
 
-    @users_line_chart = Dashboard::BuildChartService.build_inquiry_count_of_users_line_chart(inquiries)
+    @users_line_chart = Dashboard::BuildChartService.build_inquiry_count_of_users_line_chart(inquiries, params[:display_format])
     @users_pie_chart = Dashboard::BuildChartService.build_inquiry_count_of_users_pie_chart(inquiries)
 
-    @classifications_line_chart = Dashboard::BuildChartService.build_inquiry_count_of_classifications_line_chart(inquiries)
+    @classifications_line_chart = Dashboard::BuildChartService.build_inquiry_count_of_classifications_line_chart(inquiries, params[:display_format])
     @classifications_pie_chart = Dashboard::BuildChartService.build_inquiry_count_of_classifications_pie_chart(inquiries)
 
-    @inquirier_kind_line_chart = Dashboard::BuildChartService.build_inquiry_count_of_inquirier_kinds_line_chart(inquiries)
+    @inquirier_kind_line_chart = Dashboard::BuildChartService.build_inquiry_count_of_inquirier_kinds_line_chart(inquiries, params[:display_format])
     @inquirier_kind_pie_chart = Dashboard::BuildChartService.build_inquiry_count_of_inquirier_kinds_pie_chart(inquiries)
 
     @users_speed_bar_chart = Dashboard::BuildChartService.build_inquiry_speed_of_users_bar_chart(inquiries)

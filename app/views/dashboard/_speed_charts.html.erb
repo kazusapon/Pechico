@@ -1,0 +1,30 @@
+<h5 class="mt-4 mb-2">各種平均応対時間</h5>
+<hr>
+
+<div class="card">
+  <div class="card-header bg-secondary">
+    ユーザ毎の平均応対時間
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col col-sm-12">
+        <%= bar_chart @users_speed_bar_chart %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header bg-secondary">
+    システム毎の平均応対時間
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col col-sm-12">
+        <%= bar_chart @systems_speed_bar_chart %>
+      </div>
+    </div>
+  </div>
+</div>
