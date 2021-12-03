@@ -1,4 +1,5 @@
 default: &default
+  title: 'Pechico'
   application_name: 'Pechico'
 
 
