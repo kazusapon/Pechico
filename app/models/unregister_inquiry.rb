@@ -8,6 +8,9 @@ class UnregisterInquiry < ApplicationRecord
 
   def self.search(user)
     return UnregisterInquiry.where(user_id: user.id)
+                            .or(
+                              where('user_id IS NULL')
+                            )
                             .order(inquiry_date: :desc)
                             .order(start_time: :desc)
   end
