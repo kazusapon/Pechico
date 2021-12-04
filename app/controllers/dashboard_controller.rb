@@ -7,7 +7,7 @@ class DashboardController < ApplicationController
     build_chart(inquiries)
 
     if unregister_inquiries = UnregisterInquiry.search(current_user)
-      flash[:error] = "未登録の問合せが#{unregister_inquiries.size}件あります。"
+      flash.now[:error] = "未登録の問合せが#{unregister_inquiries.size}件あります。"
     end
   end
 
