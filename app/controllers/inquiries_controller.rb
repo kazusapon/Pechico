@@ -3,8 +3,6 @@ class InquiriesController < ApplicationController
   PER = 10
   MOST_RECENT = 100
   
-  protect_from_forgery  only: :push
-
   def index
     set_select_box_items
     @q = Inquiry.ransack(params[:q])
