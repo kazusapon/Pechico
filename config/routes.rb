@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   
   resources :common_inquiries, except: :show do
     collection do
-      get 'search', to: 'common_inquiries#search'
+      get 'search'
     end
   end
 
@@ -18,19 +18,19 @@ Rails.application.routes.draw do
 
   resources :inquiries do
     collection do
-      get 'unregister_inquiries', to: 'inquiries#unregister_inquiries'
-      get 'related_inquiries', to: 'inquiries#related_inquiries'
-      get 'qa_search', to: 'inquiries#qa_search'
-      get 'most_recent_search', to: 'inquiries#most_recent_search'
-      get 'unregister_new', to: 'inquiries#unregister_new'
+      get 'unregister_inquiries'
+      get 'related_inquiries'
+      get 'qa_search'
+      get 'most_recent_search'
+      get 'unregister_new'
       post 'unregister_create'
     end
 
     member do
-      get 'resurrect', to: 'inquiries#resurrect'
-      get 'approve', to: 'inquiries#approve'
-      get 'approve_cancel', to: 'inquiries#approve_cancel'
-      delete 'unregister_destroy', to: 'inquiries#unregister_destroy'
+      get 'resurrect'
+      get 'approve'
+      get 'approve_cancel'
+      delete 'unregister_destroy'
     end
   end
 
