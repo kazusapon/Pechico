@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       get 'qa_search', to: 'inquiries#qa_search'
       get 'most_recent_search', to: 'inquiries#most_recent_search'
       get 'unregister_new', to: 'inquiries#unregister_new'
+      post 'unregister_create'
     end
 
     member do

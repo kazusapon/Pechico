@@ -3,6 +3,8 @@ class InquiriesController < ApplicationController
   PER = 10
   MOST_RECENT = 100
   
+  protect_from_forgery  only: :push
+
   def index
     set_select_box_items
     @q = Inquiry.ransack(params[:q])
@@ -71,6 +73,14 @@ class InquiriesController < ApplicationController
     set_select_box_items
     
     render :new
+  end
+
+  def unregister_create
+    unregister_inquiry = UnregisterInquiry.new(unregister_params)
+    unregister_inquiry.save!
+    render state: 200, json: {}
+  rescue ActiveRecord::RecordInvalid => e
+    render state: 500, json: {}
   end
 
   def edit
@@ -189,6 +199,13 @@ class InquiriesController < ApplicationController
       :system_id, :user_id, :inquiry_classification_id, :inquiry_method_id,
       :company_name, :telephone_number, :sub_telephone_number, :inquirier_name, :inquirier_kind_id,
       :question, :answer, :parent_inquiry_id, :is_completed
+    )
+  end
+
+  def unregister_params
+    params.permit(
+      :company_name, :telephone_number, :inquirier_name, :inquirier_kind_id,
+      :inquiry_date, :start_time, :unknown_number_status
     )
   end
 
