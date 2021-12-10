@@ -1,4 +1,6 @@
 class InquiriesController < ApplicationController
+  protect_from_forgery only: :unregister_create
+
   require 'csv'
   PER = 10
   MOST_RECENT = 100

@@ -1,4 +1,6 @@
 class UnregisterInquiry < ApplicationRecord
+  belongs_to :inquirier_kind, optional: true
+
   after_create :notify_incoming_call
 
   def inquiry_datetime
@@ -21,6 +23,13 @@ class UnregisterInquiry < ApplicationRecord
 
   # 着信を通知する
   def notify_incoming_call
-    ActionCable.server.broadcast("cti_channel", {})
+    data = {}
+    data[:datetime] = self.inquiry_datetime
+    data[:company_name] = self.company_name.blank? ? '新規' : self.company_name
+    data[:inquirier_name] = self.inquirier_name
+    data[:telephone_number] = self.telephone_number
+    data[:inquirier_kind] = self.inquirier_kind.blank? ? '' : self.inquirier_kind.name
+    
+    ActionCable.server.broadcast("cti_channel", data)
   end
 end
