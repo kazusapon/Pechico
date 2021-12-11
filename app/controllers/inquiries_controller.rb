@@ -3,6 +3,7 @@ class InquiriesController < ApplicationController
 
   require 'csv'
   PER = 10
+  UNREGISTER_PER = 9
   MOST_RECENT = 100
   
   def index
@@ -27,6 +28,8 @@ class InquiriesController < ApplicationController
 
   def unregister_inquiries
     @inquiries = UnregisterInquiry.search(current_user)
+                                  .page(params[:page])
+                                  .per(UNREGISTER_PER)
   end
 
   def show
@@ -78,6 +81,7 @@ class InquiriesController < ApplicationController
   def unregister_create
     unregister_inquiry = UnregisterInquiry.new(unregister_params)
     unregister_inquiry.save!
+
     render state: 200, json: {}
   rescue ActiveRecord::RecordInvalid => e
     render state: 500, json: {}
@@ -88,6 +92,18 @@ class InquiriesController < ApplicationController
     @inquiry = Inquiry.find(params[:id])
     @inquiry.start_time = @inquiry.start_time.strftime('%H:%M')
     @inquiry.end_time = @inquiry.end_time.strftime('%H:%M')
+  end
+
+  def unregister_edit
+    if @unregister_inquiry = UnregisterInquiry.find_by(id: params[:id])
+      if @unregister_inquiry.user_id.blank?
+        @unregister_inquiry.update!(user_id: current_user.id)
+        
+        render :unregister_edit and return
+      end
+    end
+
+    redirect_to action: :unregister_index
   end
 
   def update
@@ -104,6 +120,7 @@ class InquiriesController < ApplicationController
   def destroy
     inquiry = Inquiry.find(params[:id])
     inquiry.logical_delete
+
     redirect_to action: :index
   end
 
@@ -117,6 +134,7 @@ class InquiriesController < ApplicationController
   def resurrect
     inquiry = Inquiry.find(params[:id])
     inquiry.resurrect
+
     redirect_to action: :index
   end
 

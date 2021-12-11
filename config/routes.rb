@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       get 'resurrect'
       get 'approve'
       get 'approve_cancel'
+      get 'unregister_edit'
       delete 'unregister_destroy'
     end
   end

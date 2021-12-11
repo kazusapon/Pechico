@@ -35,12 +35,18 @@
                     <div class="text-right">
                       <%= delete_button(unregister_destroy_inquiry_path(inquiry)) %>
                       <%= new_button(unregister_new_inquiries_path(id: inquiry.id), 'get', false, false) %>
+                      <% if inquiry.can_resume? %>
+                        <%= link_to '再開', unregister_edit_inquiry_path(inquiry), class: 'btn btn-success', data: {turbolinks: false} %>
+                      <% end %>
                     </div>
                   </div>
                 </div>
               </div>
             <% end %>
           </div>
+        </div>
+        <div class="ml-2">
+          <%= paginate @inquiries %>
         </div>
       </div>
     </div>

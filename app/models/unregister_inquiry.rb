@@ -10,6 +10,10 @@ class UnregisterInquiry < ApplicationRecord
     return date + ' ' + time
   end
 
+  def can_resume?
+    self.end_time.blank?
+  end
+
   def self.search(user)
     return UnregisterInquiry.where(user_id: user.id)
                             .or(
