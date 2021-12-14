@@ -28,6 +28,7 @@ class UnregisterInquiry < ApplicationRecord
   # 着信を通知する
   def notify_incoming_call
     data = {}
+    data[:id] = self.id
     data[:datetime] = self.inquiry_datetime
     data[:company_name] = self.company_name.blank? ? '新規' : self.company_name
     data[:inquirier_name] = self.inquirier_name

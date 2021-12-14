@@ -46,7 +46,7 @@ consumer.subscriptions.create("CtiChannel", {
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-lg btn-outline-light" data-bs-dismiss="modal">キャンセル</button>
-              <button type="button" class="btn btn-lg btn-outline-light">担当する</button>
+              <a href="/inquiries/${data.id}/unregister_edit" class="btn btn-lg btn-outline-light">担当する</a>
             </div>
           </div>
         </div>
