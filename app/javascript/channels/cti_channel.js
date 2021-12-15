@@ -26,7 +26,7 @@ consumer.subscriptions.create("CtiChannel", {
               <h4 class="modal-title">着信があります</h4>
             </div>
             <div class="modal-body">
-              <ul class="list-group list-group-flush">
+              <ul class="list-group list-group-flush fs-3">
                 <li class="list-group-item list-group-item-danger">
                   <i class="fas fa-clock mr-3"></i> ${data.datetime}
                 </li>
@@ -40,7 +40,7 @@ consumer.subscriptions.create("CtiChannel", {
                   <i class="fas fa-phone mr-3"></i> ${data.telephone_number}
                 </li>
                 <li class="list-group-item list-group-item-danger">
-                  <i class="fas fa-user-friends"></i> ${data.inquirier_kind}
+                  <i class="fas fa-user-friends mr-3"></i> ${data.inquirier_kind}
                 </li>
               </ul>
             </div>

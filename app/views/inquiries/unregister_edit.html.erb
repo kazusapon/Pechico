@@ -1,1 +1,81 @@
-<p>test</p>
+<div class="content-wrapper">
+  <section class="content-header">
+    <div class="container-fluid">
+      <h4 class="m-0 text-dark">応対中</h4>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      <%= form_with model: @unregister_inquiry, url: unregister_update_inquiries_path, method: :patch do |f| %>
+        <div class="row">
+          <div class="col col-sm-4">
+            <div class="card">
+              <div class="card-header bg-secondary">
+                <span id="timer">問合せ元情報</span>
+              </div>
+              <div class="card-body">
+                <ul class="list-group fs-4">
+                  <li class="list-group-item">
+                    <i class="fas fa-clock mr-3"></i> <%= @unregister_inquiry.inquiry_datetime %>
+                  </li>
+                  <li class="list-group-item">
+                    <i class="fas fa-industry mr-3"></i> <%= @unregister_inquiry.company_name %>
+                  </li>
+                  <li class="list-group-item">
+                    <i class="fas fa-user-tie mr-3"></i> <%= @unregister_inquiry.inquirier_name %>
+                  </li>
+                  <li class="list-group-item">
+                    <i class="fas fa-phone mr-3"></i> <%= @unregister_inquiry.telephone_number %>
+                  </li>
+                  <li class="list-group-item">
+                    <i class="fas fa-user-friends mr-3"></i> <%= @unregister_inquiry.inquirier_kind.name %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col col-sm-8">
+            <div class="card">
+              <div class="card-header bg-secondary">
+                <span id="timer">過去の問合せ（最大5件表示）</span>
+              </div>
+              <div class="card-body p-0">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>着信日時</th>
+                      <th>システム名</th>
+                      <th>担当者</th>
+                      <th>問合せ内容</th>
+                      <th>回答内容</th>
+                      <th>回答者</th>
+                      <th>分類</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @inquiries.each do |inquiry| %>
+                      <tr>
+                        <td><%= inquiry.inquiry_datetime %></td>
+                        <td><%= inquiry.system.name %></td>
+                        <td><%= inquiry.inquirier_name %></td>
+                        <td><%= inquiry.question %></td>
+                        <td><%= inquiry.answer %></td>
+                        <td><%= inquiry.user.name %></td>
+                        <td><%= inquiry.inquiry_classification.name %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+</div>
+
+<div id="modal_area">
+</div>

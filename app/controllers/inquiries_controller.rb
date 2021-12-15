@@ -101,9 +101,21 @@ class InquiriesController < ApplicationController
         
         render :unregister_edit and return
       end
+
+      @inquiries = Inquiry.includes(:system)
+                          .includes(:user)
+                          .includes(:inquiry_classification)
+                          .where(telephone_number: @unregister_inquiry.telephone_number)
+                          .order(inquiry_date: :desc)
+                          .order(start_time: :desc)
+                          .limit(5)
+
+      if @unregister_inquiry.user_id == current_user.id
+        render :unregister_edit and return
+      end
     end
 
-    redirect_to action: :unregister_index
+    redirect_to action: :unregister_inquiries
   end
 
   def update
@@ -115,6 +127,12 @@ class InquiriesController < ApplicationController
     set_select_box_items
     
     render :edit
+  end
+
+  def unregister_update
+    unregister_inquiry = UnregisterInquiry.find_by(id: params[:id])
+    
+    redirect_to unregister_new_inquiries_path(id: unregister_inquiry.id)
   end
 
   def destroy

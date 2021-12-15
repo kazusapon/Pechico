@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       get 'most_recent_search'
       get 'unregister_new'
       post 'unregister_create'
+      patch 'unregister_update'
     end
 
     member do
