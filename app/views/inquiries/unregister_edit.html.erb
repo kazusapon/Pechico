@@ -9,15 +9,16 @@
     <div class="container-fluid">
       <%= form_with model: @unregister_inquiry, url: unregister_update_inquiries_path, method: :patch do |f| %>
         <div class="row">
-          <div class="col col-sm-4">
+          <div class="col col-sm-5">
             <div class="card">
               <div class="card-header bg-secondary">
                 <span id="timer">問合せ元情報</span>
               </div>
               <div class="card-body">
-                <ul class="list-group fs-4">
+                <ul class="list-group fs-5">
                   <li class="list-group-item">
                     <i class="fas fa-clock mr-3"></i> <%= @unregister_inquiry.inquiry_datetime %>
+                    <%= f.hidden_field :start_time, value: @unregister_inquiry.start_time.strftime('%H:%M'), id: 'start_time' %>
                   </li>
                   <li class="list-group-item">
                     <i class="fas fa-industry mr-3"></i> <%= @unregister_inquiry.company_name %>
@@ -36,11 +37,26 @@
             </div>
           </div>
 
-          <div class="col col-sm-8">
+          <div class="col col-sm-7 pl-4">
+            <h1 id="timer" class="display-1">00:00:00</h1>
+            <hr>
+            <button type="button" class="btn btn-primary btn-lg w-25">完了</button>
+            <button type="button" class="btn btn-danger btn-lg w-25">未完了</button>
+            <br>
+            <div class="mt-2">
+              <button type="button" class="btn btn-success btn-lg w-25">検索</button>
+              <%= link_to '戻る', unregister_inquiries_inquiries_path, class: 'btn btn-secondary btn-lg w-25' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-sm-12">
             <div class="card">
               <div class="card-header bg-secondary">
                 <span id="timer">過去の問合せ（最大5件表示）</span>
               </div>
+              
               <div class="card-body p-0">
                 <table class="table table-striped">
                   <thead>
@@ -57,8 +73,8 @@
                   <tbody>
                     <% @inquiries.each do |inquiry| %>
                       <tr>
-                        <td><%= inquiry.inquiry_datetime %></td>
-                        <td><%= inquiry.system.name %></td>
+                        <td><%= inquiry.inquiry_datetime_text %></td>
+                        <td><%= inquiry.system.short_name %></td>
                         <td><%= inquiry.inquirier_name %></td>
                         <td><%= inquiry.question %></td>
                         <td><%= inquiry.answer %></td>
@@ -79,3 +95,34 @@
 
 <div id="modal_area">
 </div>
+
+<script>
+  $(document).ready(() => {
+    const start_time = $('#start_time').val().split(':');
+    let hour = Number(start_time[0]);
+    let min = Number(start_time[1]);
+    let sec = 0;
+
+    function updateTimer() {
+      ++sec;
+      if (sec == 60) {
+        sec = 0;
+        ++min;
+      }
+
+      if (min == 60) {
+        min = 0;
+        ++hour;
+      }
+
+      const timer_text = zeroPadding(hour) + ":" + zeroPadding(min) + ":" +  zeroPadding(sec);
+      $('#start_time').val(timer_text);
+    }
+
+    function zeroPadding(time) {
+      return ("00" + time).slice( -2 );
+    }
+
+    setInterval(updateTimer(), 1000);
+  });
+</script>

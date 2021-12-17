@@ -51,9 +51,9 @@ class InquiriesController < ApplicationController
     @inquiry = Inquiry.new
     @inquiry.user_id = @unregister_inquiry.user_id
     @inquiry.inquiry_method_id = Inquiry.inquiry_method_ids[:telephone]
-    @inquiry.inquiry_date = @unregister_inquiry.inquiry_date.strftime('%Y-%m-%d')
-    @inquiry.start_time = @unregister_inquiry.start_time.strftime('%H:%M')
-    @inquiry.end_time = @unregister_inquiry.end_time.strftime('%H:%M')
+    @inquiry.inquiry_date = @unregister_inquiry.inquiry_date.try!(:strftime, '%Y-%m-%d')
+    @inquiry.start_time = @unregister_inquiry.start_time.try!(:strftime, '%H:%M')
+    @inquiry.end_time = @unregister_inquiry.end_time.try!(:strftime, '%H:%M')
     @inquiry.company_name = @unregister_inquiry.company_name
     @inquiry.inquirier_name = @unregister_inquiry.inquirier_name
     @inquiry.telephone_number = @unregister_inquiry.telephone_number
@@ -98,8 +98,8 @@ class InquiriesController < ApplicationController
     if @unregister_inquiry = UnregisterInquiry.find_by(id: params[:id])
       if @unregister_inquiry.user_id.blank?
         @unregister_inquiry.update!(user_id: current_user.id)
-        
-        render :unregister_edit and return
+
+        ActionCable.server.broadcast("cti_channel", { is_modal_close: true })
       end
 
       @inquiries = Inquiry.includes(:system)
@@ -110,9 +110,7 @@ class InquiriesController < ApplicationController
                           .order(start_time: :desc)
                           .limit(5)
 
-      if @unregister_inquiry.user_id == current_user.id
-        render :unregister_edit and return
-      end
+      render :unregister_edit and return
     end
 
     redirect_to action: :unregister_inquiries

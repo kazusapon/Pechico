@@ -11,6 +11,10 @@ consumer.subscriptions.create("CtiChannel", {
 
   received(data) {
     // Called when there's incoming data on the websocket for this channel
+    if (data.is_modal_close) {
+      $('#cti-modal').find('button').trigger("click");
+      return;
+    }
     const modal_html = this._buildCtiModal(data);
     $('#cti-modal-area').append(modal_html);
     $('#cti-modal-open-button').trigger("click");
