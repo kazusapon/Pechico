@@ -12,7 +12,7 @@
           <div class="col col-sm-5">
             <div class="card">
               <div class="card-header bg-secondary">
-                <span id="timer">問合せ元情報</span>
+                問合せ元情報
               </div>
               <div class="card-body">
                 <ul class="list-group fs-5">
@@ -38,7 +38,7 @@
           </div>
 
           <div class="col col-sm-7 pl-4">
-            <h1 id="timer" class="display-1">00:00:00</h1>
+            <h1 id="timer" class="display-1"><%= @unregister_inquiry.elapsed_time.strftime('%H:%M:%S') %></h1>
             <hr>
             <button type="button" class="btn btn-primary btn-lg w-25">完了</button>
             <button type="button" class="btn btn-danger btn-lg w-25">未完了</button>
@@ -98,10 +98,11 @@
 
 <script>
   $(document).ready(() => {
-    const start_time = $('#start_time').val().split(':');
+    const start_time = $('#timer').text().split(':');
+    const now = new Date();
     let hour = Number(start_time[0]);
     let min = Number(start_time[1]);
-    let sec = 0;
+    let sec = Number(start_time[2]);
 
     function updateTimer() {
       ++sec;
@@ -116,13 +117,13 @@
       }
 
       const timer_text = zeroPadding(hour) + ":" + zeroPadding(min) + ":" +  zeroPadding(sec);
-      $('#start_time').val(timer_text);
+      $('#timer').text(timer_text);
     }
 
     function zeroPadding(time) {
-      return ("00" + time).slice( -2 );
+      return ("00" + time).slice(-2);
     }
 
-    setInterval(updateTimer(), 1000);
+    setInterval(updateTimer, 1000);
   });
 </script>

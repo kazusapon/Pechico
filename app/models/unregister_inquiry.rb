@@ -14,6 +14,14 @@ class UnregisterInquiry < ApplicationRecord
     self.end_time.blank?
   end
 
+  def elapsed_time
+    now = Time.now
+    datetime = Time.parse(self.inquiry_datetime)
+    diff = now - datetime
+
+    return Time.at(diff)
+  end
+
   def self.search(user)
     return UnregisterInquiry.where(user_id: user.id)
                             .or(
