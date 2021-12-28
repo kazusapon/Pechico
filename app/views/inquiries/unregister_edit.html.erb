@@ -40,8 +40,11 @@
           <div class="col col-sm-7 pl-4">
             <h1 id="timer" class="display-1"><%= @unregister_inquiry.elapsed_time.strftime('%H:%M:%S') %></h1>
             <hr>
-            <button type="button" class="btn btn-primary btn-lg w-25">完了</button>
-            <button type="button" class="btn btn-danger btn-lg w-25">未完了</button>
+            <%= form_with url: unregister_update_inquiries_path do |f| %>
+              <%= f.hidden_field :id, value: @unregister_inquiry.id %>
+              <%= f.submit '完了', class: 'btn btn-primary btn-lg w-25', name: 'completed' %>
+              <%= f.submit '未完了', class: 'btn btn-danger btn-lg w-25' %>
+            <% end %>
             <br>
             <div class="mt-2">
               <button type="button" class="btn btn-success btn-lg w-25">検索</button>
@@ -94,6 +97,57 @@
 </div>
 
 <div id="modal_area">
+  <div id="search_inquiry_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" area-modal="true">
+    <div class="modal-dialog xlarge_modal" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="container-fluid">
+            <h4 class="modal-title">問合せ検索</h4>
+            <br />
+            <div class="row">
+              <div class="form-group col col-sm-2">
+                <%= label_tag :modal_system_id, 'システム' %>
+                <%= select_tag :modal_system_id, options_for_select(@systems), {class: 'form-control', id: 'modal_system_select'} %>
+              </div>
+              <div class="form-group col col-sm-4">
+                <%= label_tag :modal_question, '問合せ' %>
+                <%= text_field_tag :modal_question, '', class: 'form-control', id: 'modal_question' %>
+              </div>
+              <div class="form-group col col-sm-4">
+                <%= label_tag :modal_answer, '回答' %>
+                <%= text_field_tag :modal_answer, '', class: 'form-control', id: 'modal_answer' %>
+              </div>
+            </div>
+            <div class="row">              
+              <div class="text-right">
+                <%= button_tag '検索', type: 'button', class: 'btn btn-success col col-sm-1', id: 'inquiry_search_btn' %>
+                <%= hidden_field_tag :search_url, '', id: 'search_url' %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-body p-0">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>問合せ内容</th>
+                <th>回答内容</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody id="searched_inquiries">
+            </tbody>
+          </table>
+        </div>
+
+        <div class="modal-footer">
+          <%= button_tag '閉じる', type: 'button', class: 'btn btn-default modal_close' %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>

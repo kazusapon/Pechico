@@ -58,6 +58,7 @@ class InquiriesController < ApplicationController
     @inquiry.inquirier_name = @unregister_inquiry.inquirier_name
     @inquiry.telephone_number = @unregister_inquiry.telephone_number
     @inquiry.inquirier_kind_id = @unregister_inquiry.inquirier_kind_id
+    @inquiry.is_completed = @unregister_inquiry.is_completed
 
     render :new
   end
@@ -96,6 +97,8 @@ class InquiriesController < ApplicationController
 
   def unregister_edit
     if @unregister_inquiry = UnregisterInquiry.find_by(id: params[:id])
+      set_select_box_items
+
       if @unregister_inquiry.user_id.blank?
         @unregister_inquiry.update!(user_id: current_user.id)
 
@@ -128,9 +131,15 @@ class InquiriesController < ApplicationController
   end
 
   def unregister_update
-    unregister_inquiry = UnregisterInquiry.find_by(id: params[:id])
+    current_user
+    if unregister_inquiry = UnregisterInquiry.find_by(id: params[:id], user_id: @current_user.id)
+      is_completed = params[:completed].present?
+      unregister_inquiry.update!(is_completed: is_completed, end_time: Time.now.strftime('%H:%M'))
+
+      redirect_to unregister_new_inquiries_path(id: unregister_inquiry.id) and return
+    end
     
-    redirect_to unregister_new_inquiries_path(id: unregister_inquiry.id)
+    redirect_to action: :unregister_inquiries
   end
 
   def destroy
