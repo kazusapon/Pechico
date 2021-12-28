@@ -47,7 +47,7 @@
             <% end %>
             <br>
             <div class="mt-2">
-              <button type="button" class="btn btn-success btn-lg w-25">検索</button>
+              <button type="button" class="btn btn-success btn-lg w-25" data-bs-toggle="modal" data-bs-target="#search_inquiry_modal">検索</button>
               <%= link_to '戻る', unregister_inquiries_inquiries_path, class: 'btn btn-secondary btn-lg w-25' %>
             </div>
           </div>
@@ -104,26 +104,34 @@
           <div class="container-fluid">
             <h4 class="modal-title">問合せ検索</h4>
             <br />
-            <div class="row">
-              <div class="form-group col col-sm-2">
-                <%= label_tag :modal_system_id, 'システム' %>
-                <%= select_tag :modal_system_id, options_for_select(@systems), {class: 'form-control', id: 'modal_system_select'} %>
+            
+            <%= search_form_for @q, url: inquiry_search_inquiries_path, class: 'form-horizontal', id: 'search_form' do |f| %>
+              <div class="row">
+                <div class='form-group col col-sm-2'>
+                  <%= f.label :system_id_eq, 'システム' %>
+                  <%= f.select :system_id_eq, @systems, { include_blank: 'すべて' }, { class: 'form-control' } %>
+                </div>
+                <div class='form-group col col-sm-2'>
+                  <%= f.label :inquiry_classification_id_eq, '問合せ種類' %>
+                  <%= f.select :inquiry_classification_id_eq, @inquiry_classifications, { include_blank: 'すべて' }, { class: 'form-control' } %>
+                </div>
+                <div class='form-group col col-sm-2'>
+                  <%= f.label :inquirier_kind_id_eq, '問合せ元分類' %>
+                  <%= f.select :inquirier_kind_id_eq, @inquirier_kinds, { include_blank: 'すべて' }, { class: 'form-control' } %>
+                </div>
+                <div class="form-group col col-sm-5">
+                  <%= label_tag :question_cont, '問合せ' %>
+                  <%= text_field_tag :question_cont, '', class: 'form-control' %>
+                </div>
               </div>
-              <div class="form-group col col-sm-4">
-                <%= label_tag :modal_question, '問合せ' %>
-                <%= text_field_tag :modal_question, '', class: 'form-control', id: 'modal_question' %>
+
+              <div class="row">              
+                <div class="text-right">
+                  <%= button_tag '検索', type: 'button', class: 'btn btn-success col col-sm-1', id: 'inquiry_search_btn' %>
+                  <%= hidden_field_tag :search_url, '', id: 'search_url' %>
+                </div>
               </div>
-              <div class="form-group col col-sm-4">
-                <%= label_tag :modal_answer, '回答' %>
-                <%= text_field_tag :modal_answer, '', class: 'form-control', id: 'modal_answer' %>
-              </div>
-            </div>
-            <div class="row">              
-              <div class="text-right">
-                <%= button_tag '検索', type: 'button', class: 'btn btn-success col col-sm-1', id: 'inquiry_search_btn' %>
-                <%= hidden_field_tag :search_url, '', id: 'search_url' %>
-              </div>
-            </div>
+            <% end %>
           </div>
         </div>
 
@@ -133,7 +141,6 @@
               <tr>
                 <th>問合せ内容</th>
                 <th>回答内容</th>
-                <th></th>
               </tr>
             </thead>
 
@@ -143,7 +150,7 @@
         </div>
 
         <div class="modal-footer">
-          <%= button_tag '閉じる', type: 'button', class: 'btn btn-default modal_close' %>
+          <%= button_tag '閉じる', type: 'button', class: 'btn btn-default modal_close', 'data-bs-dismiss' => 'modal' %>
         </div>
       </div>
     </div>
@@ -179,4 +186,35 @@
 
     setInterval(updateTimer, 1000);
   });
+
+  $('#inquiry_search_btn').on('click', () => {
+    const params = $('#search_form').serialize();
+    $.ajax({
+      type: 'GET',
+      url: '/inquiries/inquiry_search',
+      data: params,
+      dataType: 'json'
+    }).done((inquiries) => {
+      initResult();
+      builResult(inquiries);
+    }).fail(() => {
+      initResult();
+    })
+  });
+
+  function initResult() {
+    $('#searched_inquiries').children('tr').remove();
+  }
+
+  function builResult(inquiries) {
+    let html = '';
+    $.each(inquiries, (i, data) => {
+      html += '<tr>'
+      html += '<td>' + data.question + '</td>';
+      html += '<td>' + data.answer + '</td>';
+      html += '</tr>'
+    });
+
+    $('#searched_inquiries').append(html);
+  }
 </script>

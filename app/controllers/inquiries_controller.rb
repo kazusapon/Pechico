@@ -95,7 +95,7 @@ class InquiriesController < ApplicationController
   def unregister_edit
     if @unregister_inquiry = UnregisterInquiry.find_by(id: params[:id])
       set_select_box_items
-
+      
       if @unregister_inquiry.user_id.blank?
         @unregister_inquiry.update!(user_id: current_user.id)
 
@@ -109,6 +109,8 @@ class InquiriesController < ApplicationController
                           .order(inquiry_date: :desc)
                           .order(start_time: :desc)
                           .limit(5)
+
+      @q = Inquiry.ransack(params[:q])
 
       render :unregister_edit and return
     end
@@ -163,6 +165,14 @@ class InquiriesController < ApplicationController
   def related_inquiries
     @inquiries = Inquiry.search_related_inquiries(params[:except_id], params[:telephone_number], params[:sub_telephone_number])
     render 'related_inquiries'
+  end
+
+  # unregister_editで利用
+  def inquiry_search
+    @q = Inquiry.ransack(params[:q])
+    @inquiries = @q.result.select(:question, :answer)
+
+    render json: @inquiries
   end
 
   def qa_search

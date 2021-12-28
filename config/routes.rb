@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       get 'qa_search'
       get 'most_recent_search'
       get 'unregister_new'
+      get 'inquiry_search'
       post 'unregister_create'
       patch 'unregister_update'
     end
