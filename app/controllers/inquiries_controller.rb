@@ -11,9 +11,6 @@ class InquiriesController < ApplicationController
     @q = Inquiry.ransack(params[:q])
     @inquiries = @q.result
                    .includes(:system)
-                   .includes(:user)
-                   .includes(:inquirier_kind)
-                   .includes(:inquiry_classification)
                    .order(inquiry_date: :desc)
                    .order(start_time: :desc)
                    .page(params[:page])
