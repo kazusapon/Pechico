@@ -195,18 +195,18 @@
       data: params,
       dataType: 'json'
     }).done((inquiries) => {
-      initResult();
-      builResult(inquiries);
+      removeRow();
+      buildRow(inquiries);
     }).fail(() => {
-      initResult();
+      removeRow();
     })
   });
 
-  function initResult() {
+  function removeRow() {
     $('#searched_inquiries').children('tr').remove();
   }
 
-  function builResult(inquiries) {
+  function buildRow(inquiries) {
     let html = '';
     $.each(inquiries, (i, data) => {
       html += '<tr>'
