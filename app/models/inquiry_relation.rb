@@ -1,2 +1,0 @@
-class InquiryRelation < ApplicationRecord
-end
