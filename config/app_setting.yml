@@ -1,7 +1,13 @@
 default: &default
   title: 'Pechico'
   application_name: 'Pechico'
-
+  cti_settings:
+    com_port: 'COM6'
+    baud: 9600
+    data_bits: 7
+    stop_bits: 1
+    parity: 2
+  webhook_url: 'http://localhost:3000/inquiries/unregister_create'
 
 development:
   <<: *default
