@@ -118,4 +118,14 @@ class Inquiry < ApplicationRecord
 
     return inquiries
   end
+
+  def self.get_prev_inquiry(telephone)
+    inquiry = Inquiry.where(telephone_number: telephone)
+                      .or(Inquiry.where(sub_telephone_number: telephone))
+                      .order(inquiry_date: :desc)
+                      .order(start_time: :desc)
+                      .first
+
+    return inquiry
+  end
 end

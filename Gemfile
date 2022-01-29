@@ -66,6 +66,9 @@ gem 'kaminari', :git => 'https://github.com/kaminari/kaminari'
 gem 'caxlsx'
 gem 'caxlsx_rails'
 
-#グラフ描画
+# グラフ描画
 gem 'chartkick'
 gem 'groupdate'
+
+# シリアル通信
+gem 'serialport'

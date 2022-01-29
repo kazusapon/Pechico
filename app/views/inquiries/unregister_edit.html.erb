@@ -30,7 +30,7 @@
                     <i class="fas fa-phone mr-3"></i> <%= @unregister_inquiry.telephone_number %>
                   </li>
                   <li class="list-group-item">
-                    <i class="fas fa-user-friends mr-3"></i> <%= @unregister_inquiry.inquirier_kind.name %>
+                    <i class="fas fa-user-friends mr-3"></i> <%= @unregister_inquiry.inquirier_kind.try!(:name) %>
                   </li>
                 </ul>
               </div>
