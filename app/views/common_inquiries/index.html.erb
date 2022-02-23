@@ -18,7 +18,7 @@
               </div>
               <div class="text-right">
                 <%= f.submit '検索', class: 'btn btn-success' %>
-                <%= link_to '新規追加', new_common_inquiry_path, method: :get, remote: true, class: 'btn btn-primary' %>
+                <%= new_button(new_common_inquiry_path, 'get', true) %>
               </div>
             </div>
           <% end %>
