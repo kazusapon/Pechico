@@ -39,7 +39,7 @@
             <tbody>
               <% @common_inquiries.each_with_index do |common_inquiry, i| %>
                 <tr>
-                  <td><%= i + 1 %></td>
+                  <td><%= calc_row_number(@common_inquiries, i) %></td>
                   <td><%= common_inquiry.system.short_name %></td>
                   <td><%= common_inquiry.question %></td>
                   <td><%= common_inquiry.answer %></td>

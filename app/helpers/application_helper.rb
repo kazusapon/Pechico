@@ -54,4 +54,9 @@ module ApplicationHelper
     
     return btn.html_safe
   end
+
+  # 行番号を求める
+  def calc_row_number(enumerable_model, i)
+    enumerable_model.try(:offset_value).to_i + i + 1
+  end
 end

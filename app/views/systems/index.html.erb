@@ -30,7 +30,7 @@
             <tbody>
               <% @systems.each_with_index do |sys, i| %>
                 <tr>
-                  <td><%= i + 1 %></td>
+                  <td><%= calc_row_number(@systems, i) %></td>
                   <td><%= sys.name %></td>
                   <td><%= sys.short_name %></td>
                   <td><%= sys.deleted_at.try!(:strftime, '%Y-%m-%d %H:%M:%S') %></td>

@@ -29,7 +29,7 @@
             <tbody>
               <% @inquiry_classifications.each_with_index do |classification, i| %>
                 <tr>
-                  <td><%= i + 1 %></td>
+                  <td><%= calc_row_number(@inquiry_classifications, i) %></td>
                   <td><%= classification.name %></td>
                   <td><%= classification.deleted_at.try!(:strftime, '%Y-%m-%d %H:%M:%S') %></td>
                   <td><%= inquiry_classification_operate_button(classification) %></td>

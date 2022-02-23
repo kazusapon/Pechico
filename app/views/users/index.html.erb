@@ -29,7 +29,7 @@
             <tbody>
               <% @users.each_with_index do |user, i| %>
                 <tr>
-                  <td><%= i + 1 %></td>
+                  <td><%= calc_row_number(@users, i) %></td>
                   <td><%= user.name %></td>
                   <td><%= user.deleted_at.try!(:strftime, '%Y-%m-%d %H:%M:%S') %></td>
                   <td><%= user_operate_button(user) %></td>

@@ -29,7 +29,7 @@
             <tbody>
               <% @inquirier_kinds.each_with_index do |kind, i| %>
                 <tr>
-                  <td><%= i + 1 %></td>
+                  <td><%= calc_row_number(@inquirier_kinds, i) %></td>
                   <td><%= kind.name %></td>
                   <td><%= kind.deleted_at.try!(:strftime, '%Y-%m-%d %H:%M:%S') %></td>
                   <td><%= inquirier_kind_operate_button(kind) %></td>
