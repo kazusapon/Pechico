@@ -1,4 +1,16 @@
 module ApplicationHelper
+  # 戻るボタン
+  def back_button
+  end
+
+  # 検索ボタン
+  def search_button
+  end
+
+  # 保存ボタン
+  def save_button
+  end
+
   # 詳細ボタンの生成
   def detail_button(url, method, is_ajax=false)
     btn = ''
