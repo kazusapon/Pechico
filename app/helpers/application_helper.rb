@@ -7,10 +7,6 @@ module ApplicationHelper
     return btn.html_safe
   end
 
-  # 検索ボタン
-  def search_button
-  end
-
   # 保存ボタン
   def save_button_tag(form)
     btn = ''
