@@ -27,7 +27,7 @@
         </div>
         <div class="modal-footer">
           <%= button_tag '閉じる', type: 'button', class: 'btn btn-default', data: {:'bs-dismiss' => "modal"} %>
-          <%= f.submit '保存', class: 'btn btn-primary' %>
+          <%= save_button_tag(f) %>
         </div>
       <% end %>
     </div>

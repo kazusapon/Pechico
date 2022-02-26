@@ -103,8 +103,8 @@
       </div>
 
       <div class="card-footer text-right">
-        <%= link_to '戻る', inquiries_path, class: 'btn btn-default' %>
-        <%= f.submit '保存', class: 'btn btn-primary' %>
+        <%= back_button_tag(inquiries_path) %>
+        <%= save_button_tag(f) %>
       </div>
     <% end %>
   </div>

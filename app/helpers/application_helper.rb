@@ -1,8 +1,10 @@
 module ApplicationHelper
   # 戻るボタン
-  def back_button(url)
+  def back_button_tag(url)
     btn = ''
-    
+    btn += link_to('戻る', url, class: 'btn btn-default')
+
+    return btn.html_safe
   end
 
   # 検索ボタン
@@ -10,7 +12,11 @@ module ApplicationHelper
   end
 
   # 保存ボタン
-  def save_button(form)
+  def save_button_tag(form)
+    btn = ''
+    btn += form.submit('保存', class: 'btn btn-primary')
+
+    return btn.html_safe
   end
 
   # 詳細ボタンの生成
