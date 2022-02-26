@@ -71,17 +71,9 @@
       </div>
 
       <div class="modal-footer">
-        <%= button_tag '閉じる', type: 'button', class: 'btn btn-default', id: 'modal_close' %>
+        <%= button_tag '閉じる', type: 'button', class: 'btn btn-default', data: {:'bs-dismiss' => "modal"} %>
         <%= inquiry_show_operate_button(@inquiry, @current_user) %>
       </div>
     </div>
   </div>
 </div>
-
-<script>
-
-  $('#modal_close').on('click', () => {
-    $('#inquiry_show_modal').modal('hide');
-  });
-
-</script>

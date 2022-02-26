@@ -26,18 +26,10 @@
           </div>
         </div>
         <div class="modal-footer">
-          <%= button_tag '閉じる', type: 'button', class: 'btn btn-default', id: 'modal_close' %>
+          <%= button_tag '閉じる', type: 'button', class: 'btn btn-default', data: {:'bs-dismiss' => "modal"} %>
           <%= f.submit '保存', class: 'btn btn-primary' %>
         </div>
       <% end %>
     </div>
   </div>
 </div>
-
-<script>
-
-  $('#modal_close').on('click', () => {
-    $('#user_modal').modal('hide');
-  });
-
-</script>

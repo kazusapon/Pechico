@@ -43,16 +43,12 @@
       </div>
 
       <div class="modal-footer">
-        <%= button_tag '閉じる', type: 'button', class: 'btn btn-default modal_close' %>
+        <%= button_tag '閉じる', type: 'button', class: 'btn btn-default', data: {:'bs-dismiss' => "modal"} %>
       </div>
     </div>
   </div>
 </div>
 <script>
-
-  $('.modal_close').on('click', () => {
-    $('#related_inquiries_modal').modal('hide');
-  });
 
   function selectedRelatedInquiry(event) {
     const selectBtn = event.currentTarget;
