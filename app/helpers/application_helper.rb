@@ -1,5 +1,5 @@
 module ApplicationHelper
-  # 戻るボタン
+  # 戻るボタンの生成
   def back_button_tag(url)
     btn = ''
     btn += link_to('戻る', url, class: 'btn btn-default')
@@ -7,7 +7,7 @@ module ApplicationHelper
     return btn.html_safe
   end
 
-  # 保存ボタン
+  # 保存ボタンの生成
   def save_button_tag(form)
     btn = ''
     btn += form.submit('保存', class: 'btn btn-primary')
