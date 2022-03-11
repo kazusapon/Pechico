@@ -25,5 +25,7 @@ module Pechico
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.x.app_setting = config_for(:app_setting).deep_symbolize_keys
+
+    config.i18n.default_locale = :ja
   end
 end

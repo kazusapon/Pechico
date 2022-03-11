@@ -1,0 +1,47 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        login_id: 'ログインID'
+        name: 'ユーザ名'
+      system:
+        name: '名称'
+        short_name: '略称'
+      inquiry_classification:
+        name: '名称'
+      inquiry_kind:
+        name: '名称'
+      common_inquiry:
+        system_id: 'システム'
+        question: '質問'
+        answer: '回答'
+        sort_order: '表示順'
+      unregister_inquiry:
+        user_id: '回答者'
+        company_name: '問合せ元'
+        telephone_number: '電話番号'
+        inquiry_date: '着信日'
+        start_time: '着信時間'
+        end_time: '終了時間'
+        inquieir_name: '担当者'
+        inquirier_kind_id: '問合せ元分類'
+        unknown_number_status: ''
+        is_completed: '完了状態'
+      inquiry:
+        user_id: '回答者'
+        company_name: '問合せ元'
+        telephone_number: '電話番号'
+        sub_telephone_number: '電話番号（予備）'
+        inquiry_date: '着信日'
+        start_time: '着信時間'
+        end_time: '終了時間'
+        inquirier_name: '担当者'
+        inquirier_kind_id: '問合せ元分類'
+        question: '問合せ'
+        answer: '回答'
+        approve_at: '承認日'
+        is_completed: '完了状態'
+        inquiry_method_id: '問合せ方法'
+        inquiry_classification_id: '問合せ分類'
+        approver_id: '承認者'
+        system_id: 'システム'
