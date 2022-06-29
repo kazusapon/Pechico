@@ -27,6 +27,8 @@ class InquiriesController < ApplicationController
     @inquiries = UnregisterInquiry.search(current_user)
                                   .page(params[:page])
                                   .per(UNREGISTER_PER)
+                                  
+    flash.now[:message] = '新着の問合せはありません。' if @inquiries.blank?
   end
 
   def show
