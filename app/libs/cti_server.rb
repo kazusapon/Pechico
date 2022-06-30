@@ -7,7 +7,7 @@ module CtiServer
   class Wrapper
     class << self
       def start
-        puts 'CTIServer Reading Started'
+        puts 'CTIServer Reading Started.'
         serialport = init_serialport
 
         loop do
